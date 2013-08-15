@@ -141,7 +141,7 @@ function proml {
     ;;
   esac
 PS1="${TITLEBAR}\
-$BLUE [ $BROWN\u@\h:\w -- \D{%a %b %d %Y %l:%M%p (%Z%z)}$LIGHT_GRAY\$(__git_ps1)\
+$BLUE [ $BROWN\D{%a %b %d %Y %l:%M%p (%Z%z)} -- \u@\h:\w $LIGHT_GRAY\$(__git_ps1)\
 $LIGHT_RED\$(dirty.sh)$BLUE]\
 $WHITE \$(nowplaying)\n$LIGHT_GRAY λ $LIGHT_GRAY"
 PS2='> '
