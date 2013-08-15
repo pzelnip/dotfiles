@@ -1,7 +1,3 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
-
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
@@ -188,9 +184,9 @@ SONAR_RUNNER_HOME="/Users/aparkin/Downloads/sonar/sonarrunner"
 export SONAR_RUNNER_HOME 
 export PATH=$PATH:$SONAR_RUNNER_HOME/bin
 
+# source some env vars that I don't want in version control
+source ~/.passwords
+
 function b64() {
   openssl base64 -in $1 | tr -d "\n" | pbcopy;
 }
-
-# source some env vars that I don't want in version control
-source ~/.passwords
