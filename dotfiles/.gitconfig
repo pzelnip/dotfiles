@@ -1,0 +1,32 @@
+[user]
+	name = Adam Parkin 
+	email = aparkin@seekersolutions.com 
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+	interactive = auto
+[diff]
+	renames = copies
+[core]
+	editor = vim
+	pager = less -r
+
+[alias]
+    # view a simplified log
+    headlines = log --oneline --no-merges
+
+    # delete local and remote copies of a branch -- USE WITH CARE
+    nullify = !sh -c 'git push $0 :$1 && git branch -d $1'
+
+    accept-theirs = "!f() { files=\"$@\"; [ -z $files ] && files='.'; git checkout --theirs -- $files; git add -u $files; }; f"
+	create-pull-request = !sh -c 'stash pull-request $0'
+
+	co = checkout
+
+    b = branch
+    s = status
+
+
+[github]
+	user = pzelnip

@@ -1,0 +1,15 @@
+#!/bin/sh
+
+osascript \
+    -e 'on ApplicationIsRunning(appName)' \
+	-e '     tell application "System Events" to set appNameIsRunning to exists (processes where name is appName)' \
+    -e '     return appNameIsRunning' \
+    -e 'end ApplicationIsRunning' \
+    -e 'if ApplicationIsRunning("iTunes") then' \
+    -e '   tell application "iTunes"' \
+    -e '     "\n Track: " & (get name of current track) & " - Artist: " & (get artist of current track) & " - Album: " & (get album of current track)' \
+    -e '     end tell' \
+    -e 'else' \
+    -e '   ""' \
+    -e 'end if'
+
