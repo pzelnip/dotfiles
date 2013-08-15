@@ -115,6 +115,11 @@ fi
 #
 export GIT_PS1_SHOWDIRTYSTATE=1
 
+function uptimeinfo {
+  # requires installing uptime lib: pip install uptime
+  python -m uptime | sed 's/Uptime: //' | sed 's/days/d/' | sed 's/hours/h/' | sed 's/minutes/m/' | sed 's/seconds/s/' | tr -d ' '
+}
+
 function proml {
   local        BLACK="\[\033[0;30m\]"
   local         GRAY="\[\033[1;30m\]"
@@ -141,7 +146,7 @@ function proml {
     ;;
   esac
 PS1="${TITLEBAR}\
-$BLUE [ $BROWN\D{%a %b %d %Y %l:%M%p (%Z%z)} -- \u@\h:\w $LIGHT_GRAY\$(__git_ps1)\
+$BLUE [ $BROWN\D{%a %b %d %Y %l:%M%p (%Z%z)} $GREEN[\$(uptimeinfo)] $BROWN\u@\h:\w $LIGHT_GRAY\$(__git_ps1)\
 $LIGHT_RED\$(dirty.sh)$BLUE]\
 $WHITE \$(nowplaying)\n$LIGHT_GRAY λ $LIGHT_GRAY"
 PS2='> '
