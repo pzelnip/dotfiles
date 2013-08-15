@@ -116,8 +116,7 @@ fi
 export GIT_PS1_SHOWDIRTYSTATE=1
 
 function uptimeinfo {
-  # requires installing uptime lib: pip install uptime
-  python -m uptime | sed 's/Uptime: //' | sed 's/days/d/' | sed 's/hours/h/' | sed 's/minutes/m/' | sed 's/seconds/s/' | tr -d ' '
+    uptime | perl -ne 'if(/\d\s+up(.*),\s+\d+\s+users/) { $s = $1; $s =~ s/^\s+|\s+$//g; print $s; }'
 }
 
 function proml {
