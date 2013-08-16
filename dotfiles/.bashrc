@@ -62,6 +62,16 @@ fi
 #
 export GIT_PS1_SHOWDIRTYSTATE=1
 
+
+function promptcol {
+# return red if root, white otherwise
+    if [ ${UID} -eq 0 ]; then
+        echo '1;31m'
+    else
+        echo '0;37m'
+    fi
+}
+
 function uptimeinfo {
     uptime | perl -ne 'if(/\d\s+up(.*),\s+\d+\s+users/) { $s = $1; $s =~ s/^\s+|\s+$//g; print $s; }'
 }
@@ -91,10 +101,16 @@ function proml {
     TITLEBAR=""
     ;;
   esac
+
+PCOLOR="\[\033[\$(promptcol)\]"
+
+# note that in the following prompt the error code item (\$?) must be the 
+# first item in the prompt.  Otherwise it'll show the errorcode for the last 
+# command executed in producing the prompt.
 PS1="${TITLEBAR}\
-$BLUE [ $BROWN\D{%a %b %d %Y %l:%M%p (%Z%z)} $GREEN[\$(uptimeinfo)] $BROWN\u@\h:\w $LIGHT_GRAY\$(__git_ps1)\
+$BLUE [$GREEN[\$?] [\D{%a %b %d %Y %l:%M%p (%Z%z)}] [Up: \$(uptimeinfo)] $BROWN\u@\h:\w $LIGHT_GRAY\$(__git_ps1)\
 $LIGHT_RED\$(dirty.sh)$BLUE]\
-$WHITE \$(nowplaying)\n$LIGHT_GRAY λ $LIGHT_GRAY"
+$WHITE \$(nowplaying)\n$LIGHT_GRAY $PCOLOR λ $LIGHT_GRAY"
 PS2='> '
 PS4='+ '
 }
