@@ -122,7 +122,7 @@ source /usr/local/bin/virtualenvwrapper.sh
 source /usr/local/git/contrib/completion/git-completion.bash
 
 export PATH=$PATH:/Applications/Xcode.app/Contents/Developer/usr/bin
-export PATH=$PATH:/Users/aparkin/bin
+export PATH=$PATH:/Users/aparkin/bin:/Users/aparkin/Downloads/lenskit/bin 
 
 alias truecrypt='/Applications/TrueCrypt.app/Contents/MacOS/Truecrypt --text'
 alias mountusb='/Applications/TrueCrypt.app/Contents/MacOS/Truecrypt --text --mount /Volumes/NO\ NAME/mainData.tc /Volumes/usbarchive'
