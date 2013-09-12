@@ -6,8 +6,8 @@ else
     TYPE=$(pygmentize -N $1)
 
     if [ $TYPE = "text" ]; then
-        lolcat $1
+        lolcat "$1"
     else
-        pygmentize $1
+        pygmentize "$1"
     fi
 fi
