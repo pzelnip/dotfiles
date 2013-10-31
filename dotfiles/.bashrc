@@ -135,7 +135,8 @@ alias mount-netfile='dir="/Volumes/netfile"; if [ ! -d ${dir} ]; then mkdir ${di
 alias cat='cat.sh'
 
 #JAVA_HOME="/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Home/"
-JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home"
+#JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home"
+JAVA_HOME=$(/usr/libexec/java_home)
 export JAVA_HOME
 
 HUBOT_IRC_NICK="space-core"
