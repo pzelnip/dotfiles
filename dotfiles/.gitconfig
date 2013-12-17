@@ -30,5 +30,12 @@
     # edit all conflicted files in vim, taken from https://coderwall.com/p/j7kxsa
     edit-conflicts = "!f() { git status -s | grep ^UU | awk '{print $2}' ; }; mvim `f`"
 
+    # cause git to forget or remember a tracked file, allowing changes to skip version control
+    # see: http://stackoverflow.com/questions/13630849/git-difference-between-assume-unchanged-and-skip-worktree/13631525#13631525
+    amnesia = !sh -c 'git update-index --skip-worktree $0'
+    recall = !sh -c 'git update-index --no-skip-worktree $0'
+    forgetfulness = !git ls-files -v | grep ^S
+    
+
 [github]
 	user = pzelnip
