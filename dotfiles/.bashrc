@@ -119,7 +119,7 @@ proml
 export WORKON_HOME=~/.envs
 source /usr/local/bin/virtualenvwrapper.sh
 
-source /usr/local/git/contrib/completion/git-completion.bash
+source ~/bin/git-completion.bash
 
 export PATH=$PATH:/Applications/Xcode.app/Contents/Developer/usr/bin
 export PATH=$PATH:/Users/aparkin/bin:/Users/aparkin/Downloads/lenskit/bin 
