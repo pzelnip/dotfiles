@@ -28,12 +28,14 @@ Some of the scripts assume a username of "aparkin", failure to run them under a 
 
 http://xquartz.macosforge.org/landing/
 
-### pip
+### Python Stuff 
 
-```pip``` is also required, and may be installed by:
+There's various Python utilities required:
 
 ```
 $ sudo easy_install pip
+$ sudo pip install virtualenv
+$ sudo pip install virtualenvwrapper
 ```
 ### iTerm2
 
@@ -59,3 +61,15 @@ Hotkey for maximizing windows (taken from: http://scratching.psybermonkey.net/20
 - In the "Menu Title :" column, type in "Zoom"
 - Click on the next column, "Keyboard Shortcut:", then press your preferred keyboard shortcut. E.g. Control + Option + Command + m (you didn't read wrongly, is 4 keys there :p)
 
+### Caffeine
+
+Install Caffeine from the app store: http://itunes.apple.com/us/app/caffeine/id411246225
+
+### MenuCalendarClock for iCal
+
+See: http://download.cnet.com/MenuCalendarClock-for-iCal/3000-2124_4-18953.html
+
+Some settings for it:
+
+- Custom clock format: %b %d %1I:%M:%S %p
+- Under display -> Advanced, make sure "Hide Dock Icon" is selected
