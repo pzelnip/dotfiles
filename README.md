@@ -74,6 +74,10 @@ Some settings for it:
 - Custom clock format: %b %d %1I:%M:%S %p
 - Under display -> Advanced, make sure "Hide Dock Icon" is selected
 
+### CPULed
+
+Install CPULED from the appstore: https://itunes.apple.com/ca/app/cpu-led/id448189857?mt=12
+
 ## Other Examples of This
 
 I'm not the first to throw my config/setup stuff into a source control repo, others to look at for inspiration:
