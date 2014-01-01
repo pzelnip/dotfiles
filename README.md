@@ -15,3 +15,32 @@ python link_in_homedir.py
 ```
 
 to create symbolic links from all the files into the home directory of the currently logged in user.
+
+## Caveats/Issues/Notes
+
+### Username
+
+Some of the scripts assume a username of "aparkin", failure to run them under a user with this name will result in weird stuff happening (ie - stuff breaks)
+
+### lndir
+
+```lndir``` is required for the scripts to work.  On OSX Lion, this command is (I believe) included by default.  On Mountain Lion or later you'll have to install the Quartz tookit to get it, see:
+
+http://xquartz.macosforge.org/landing/
+
+### pip
+
+```pip``` is also required, and may be installed by:
+
+```
+$ sudo easy_install pip
+```
+### iTerm2
+
+I use [iTerm2](http://www.iterm2.com/#/section/home) as my terminal of choice, and my config can be found in ```iterm/```
+
+At the time of writing the only way to restore this config is to copy it (or simlink it) to ```~/Library/Preferences/``` for example:
+
+```
+$ ln -s com.googlecode.iterm2.plist ~/Library/Preferences/
+```
