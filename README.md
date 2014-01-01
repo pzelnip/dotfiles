@@ -44,3 +44,18 @@ At the time of writing the only way to restore this config is to copy it (or sim
 ```
 $ ln -s com.googlecode.iterm2.plist ~/Library/Preferences/
 ```
+
+## Other Setup Stuff
+
+### Maximize Hotkey
+
+Hotkey for maximizing windows (taken from: http://scratching.psybermonkey.net/2011/01/osx-how-to-maximize-window-using.html)
+
+- Open the "System Preferences"
+- Under the "Hardware" section, click on "Keyboard"
+- Next, click on "Keyboard Shortcuts" then "Application Shortcuts" (on the left hand box)
+- Add a shortcut key by clicking on "+" symbol, on the bottom of the right hand box
+- At the next dialog box, choose "All Applications" for "Application:"
+- In the "Menu Title :" column, type in "Zoom"
+- Click on the next column, "Keyboard Shortcut:", then press your preferred keyboard shortcut. E.g. Control + Option + Command + m (you didn't read wrongly, is 4 keys there :p)
+
