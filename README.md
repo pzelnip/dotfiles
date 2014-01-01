@@ -35,3 +35,12 @@ http://xquartz.macosforge.org/landing/
 ```
 $ sudo easy_install pip
 ```
+### iTerm2
+
+I use [iTerm2](http://www.iterm2.com/#/section/home) as my terminal of choice, and my config can be found in ```iterm/```
+
+At the time of writing the only way to restore this config is to copy it (or simlink it) to ```~/Library/Preferences/``` for example:
+
+```
+$ ln -s com.googlecode.iterm2.plist ~/Library/Preferences/
+```
