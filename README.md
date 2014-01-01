@@ -73,3 +73,9 @@ Some settings for it:
 
 - Custom clock format: %b %d %1I:%M:%S %p
 - Under display -> Advanced, make sure "Hide Dock Icon" is selected
+
+## Other Examples of This
+
+I'm not the first to throw my config/setup stuff into a source control repo, others to look at for inspiration:
+
+https://bitbucket.org/j/dotfiles/src
