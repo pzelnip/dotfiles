@@ -122,7 +122,7 @@ source /usr/local/bin/virtualenvwrapper.sh
 source ~/bin/git-completion.bash
 
 export PATH=$PATH:/Applications/Xcode.app/Contents/Developer/usr/bin
-export PATH=$PATH:/Users/aparkin/bin
+export PATH=$PATH:~/bin
 
 alias truecrypt='/Applications/TrueCrypt.app/Contents/MacOS/Truecrypt --text'
 alias mountusb='/Applications/TrueCrypt.app/Contents/MacOS/Truecrypt --text --mount /Volumes/NO\ NAME/mainData.tc /Volumes/usbarchive'
@@ -146,10 +146,10 @@ export HUBOT_IRC_ROOMS
 HUBOT_IRC_SERVER="irc.seekersolutions.com"
 export HUBOT_IRC_SERVER
 
-STASH_HOME="/Users/aparkin/Downloads/stash/stash-home"
+STASH_HOME="${HOME}/Downloads/stash/stash-home"
 export STASH_HOME
 
-SONAR_RUNNER_HOME="/Users/aparkin/Downloads/sonar/sonarrunner"
+SONAR_RUNNER_HOME="${HOME}/Downloads/sonar/sonarrunner"
 export SONAR_RUNNER_HOME 
 export PATH=$PATH:$SONAR_RUNNER_HOME/bin
 
