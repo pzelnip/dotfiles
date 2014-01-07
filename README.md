@@ -20,7 +20,7 @@ to create symbolic links from all the files into the home directory of the curre
 
 ### Username
 
-Some of the scripts assume a username of "aparkin", failure to run them under a user with this name will result in weird stuff happening (ie - stuff breaks)
+Previously, some of the scripts assume a username of "aparkin", and failure to run them under a user with this name would result in weird stuff happening (ie - stuff breaks).  I *think* I have resolved this issue, however, this is (at the time of this writing) untested.
 
 ### lndir
 
