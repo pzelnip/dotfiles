@@ -29,7 +29,7 @@ alias cls='clear'
 alias vi='mvim'
 alias rd='rmdir'
 alias bashrc='\vim ~/.bashrc && source ~/.bashrc'
-alias dusort='du --max-depth=1 -h | perl /home/aparkin/bin/sortdu.pl'
+alias dusort='du -d 1 -h | sortdu.pl'
 
 alias gitk='gitk --all'
 
@@ -122,7 +122,7 @@ source /usr/local/bin/virtualenvwrapper.sh
 source ~/bin/git-completion.bash
 
 export PATH=$PATH:/Applications/Xcode.app/Contents/Developer/usr/bin
-export PATH=$PATH:/Users/aparkin/bin:/Users/aparkin/Downloads/lenskit/bin 
+export PATH=$PATH:/Users/aparkin/bin
 
 alias truecrypt='/Applications/TrueCrypt.app/Contents/MacOS/Truecrypt --text'
 alias mountusb='/Applications/TrueCrypt.app/Contents/MacOS/Truecrypt --text --mount /Volumes/NO\ NAME/mainData.tc /Volumes/usbarchive'
