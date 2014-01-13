@@ -16,3 +16,4 @@ set foldmethod=indent
 set foldnestmax=10
 set nofoldenable
 
+set ic
