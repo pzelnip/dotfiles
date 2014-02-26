@@ -162,3 +162,5 @@ source ~/.passwords
 function b64() {
    base64 | pbcopy
 }
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
