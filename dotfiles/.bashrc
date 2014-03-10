@@ -164,3 +164,8 @@ function b64() {
 }
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+# cd to the git root directory (ie if in /myproject/src/main/java/com/foobar/baz
+# a cd-gitroot will return you to /myproject)
+# https://coderwall.com/p/zro3qg
+alias cd-gitroot='cd $(git rev-parse --show-toplevel)'
