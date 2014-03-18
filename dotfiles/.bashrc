@@ -169,3 +169,5 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 # a cd-gitroot will return you to /myproject)
 # https://coderwall.com/p/zro3qg
 alias cd-gitroot='cd $(git rev-parse --show-toplevel)'
+
+alias vimdiff='mvim -d'
