@@ -20,7 +20,6 @@
     nullify = !sh -c 'git push $0 :$1 && git branch -d $1'
 
     accept-theirs = "!f() { files=\"$@\"; [ -z $files ] && files='.'; git checkout --theirs -- $files; git add -u $files; }; f"
-	create-pull-request = !sh -c 'stash pull-request $0'
 
 	co = checkout
 
