@@ -171,4 +171,4 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 alias cd-gitroot='cd $(git rev-parse --show-toplevel)'
 
 alias vimdiff='mvim -d'
-alias gitcopybranch="git branch | grep '*' | tr -d ' *\n' | pbcopy"
+alias git-copybranch="git branch | grep '*' | tr -d ' *\n' | pbcopy"
