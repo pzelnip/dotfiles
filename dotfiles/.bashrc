@@ -162,3 +162,13 @@ source ~/.passwords
 function b64() {
    base64 | pbcopy
 }
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+# cd to the git root directory (ie if in /myproject/src/main/java/com/foobar/baz
+# a cd-gitroot will return you to /myproject)
+# https://coderwall.com/p/zro3qg
+alias cd-gitroot='cd $(git rev-parse --show-toplevel)'
+
+alias vimdiff='mvim -d'
+alias git-copybranch="git branch | grep '*' | tr -d ' *\n' | pbcopy"
