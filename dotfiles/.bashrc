@@ -127,6 +127,10 @@ export PATH=$PATH:~/bin
 alias truecrypt='/Applications/TrueCrypt.app/Contents/MacOS/Truecrypt --text'
 alias mountusb='/Applications/TrueCrypt.app/Contents/MacOS/Truecrypt --text --mount /Volumes/NO\ NAME/mainData.tc /Volumes/usbarchive'
 
+mounttc() {
+    /Applications/TrueCrypt.app/Contents/MacOS/Truecrypt --text --mount $1 /Volumes/$1
+}
+
 alias md5sum='md5 -r'
 
 alias mount-ydrive='dir="/Volumes/ydrive"; if [ ! -d ${dir} ]; then mkdir ${dir}; fi; sudo mount -t nfs -o proto=tcp 192.168.47.20:/PUBLIC ${dir}; unset dir;'
