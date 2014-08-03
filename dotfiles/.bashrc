@@ -143,13 +143,6 @@ alias cat='cat.sh'
 JAVA_HOME=$(/usr/libexec/java_home)
 export JAVA_HOME
 
-HUBOT_IRC_NICK="space-core"
-export HUBOT_IRC_NICK
-HUBOT_IRC_ROOMS="#seeker,#hubot"
-export HUBOT_IRC_ROOMS
-HUBOT_IRC_SERVER="irc.seekersolutions.com"
-export HUBOT_IRC_SERVER
-
 STASH_HOME="${HOME}/Downloads/stash/stash-home"
 export STASH_HOME
 
