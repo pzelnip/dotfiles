@@ -169,3 +169,40 @@ alias cd-gitroot='cd $(git rev-parse --show-toplevel)'
 
 alias vimdiff='mvim -d'
 alias git-copybranch="git branch | grep '*' | tr -d ' *\n' | pbcopy"
+
+
+# start youtube on my chromecast, taken from:
+# https://coderwall.com/p/jvuzdg
+# http://fiquett.com/2013/07/chromecast-traffic-sniffing/
+function ccytplay {
+  curl -H "Content-Type: application/json" \
+    http://192.168.1.149:8008/apps/YouTube \
+    -X POST \
+    -d "v=$1";
+}
+
+# quit Youtube on the chromecast
+function ccytquit {
+  curl -H "Content-Type: application/json" \
+    http://192.168.1.149:8008/apps/YouTube \
+    -X DELETE;
+}
+
+function ccytstatus {
+curl -H "Content-Type: application/json" http://192.168.1.149:8008/apps/YouTube -X GET
+}
+
+# search Youtube for a query string on the command line
+function ytsearch() {
+  curl -s https://www.youtube.com/results\?search_query\=$@ | \
+    grep -o 'watch?v=[^"]*"[^>]*title="[^"]*' | \
+    sed -e 's/^watch\?v=\([^"]*\)".*title="\(.*\)/\1 \2/g'
+}
+
+function ccinfo {
+  curl http://192.168.1.149:8008/ssdp/device-desc.xml
+}
+
+function ccinfodetail {
+  curl http://192.168.1.149:8008/setup/eureka_info?options=detail | python -mjson.tool
+}
