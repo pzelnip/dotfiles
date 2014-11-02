@@ -150,6 +150,9 @@ SONAR_RUNNER_HOME="${HOME}/Downloads/sonar/sonarrunner"
 export SONAR_RUNNER_HOME 
 export PATH=$PATH:$SONAR_RUNNER_HOME/bin
 
+SLACK_WEBHOOK_URL="https://pzelnip.slack.com/services/hooks/incoming-webhook?token=Ta4BRUMStaB5ahT4Y76eT1Hi"
+export SLACK_WEBHOOK_URL
+
 # source some env vars that I don't want in version control
 source ~/.passwords
 
@@ -206,3 +209,5 @@ function ccinfo {
 function ccinfodetail {
   curl http://192.168.1.149:8008/setup/eureka_info?options=detail | python -mjson.tool
 }
+
+
