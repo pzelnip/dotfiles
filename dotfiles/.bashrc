@@ -150,7 +150,9 @@ SONAR_RUNNER_HOME="${HOME}/Downloads/sonar/sonarrunner"
 export SONAR_RUNNER_HOME 
 export PATH=$PATH:$SONAR_RUNNER_HOME/bin
 
-SLACK_WEBHOOK_URL="https://pzelnip.slack.com/services/hooks/incoming-webhook?token=Ta4BRUMStaB5ahT4Y76eT1Hi"
+#SLACK_WEBHOOK_URL="https://pzelnip.slack.com/services/hooks/incoming-webhook?token=Ta4BRUMStaB5ahT4Y76eT1Hi"
+SLACK_WEBHOOK_URL="https://hooks.slack.com/services/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"
+
 export SLACK_WEBHOOK_URL
 
 # source some env vars that I don't want in version control
@@ -214,3 +216,5 @@ function ccinfodetail {
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+
+export SLACK_WEBHOOK_URL
