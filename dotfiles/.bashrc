@@ -121,7 +121,8 @@ source /usr/local/bin/virtualenvwrapper.sh
 
 source ~/bin/git-completion.bash
 
-export PATH=/usr/local/bin:$PATH:/Applications/Xcode.app/Contents/Developer/usr/bin:Applications/Postgres.app/Contents/Versions/9.3/bin/
+export PATH=/usr/local/bin:$PATH:/Applications/Xcode.app/Contents/Developer/usr/bin
+#:Applications/Postgres.app/Contents/Versions/9.3/bin
 export PATH=$PATH:~/bin
 
 alias truecrypt='/Applications/TrueCrypt.app/Contents/MacOS/Truecrypt --text'
