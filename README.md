@@ -83,3 +83,40 @@ Install CPULED from the appstore: https://itunes.apple.com/ca/app/cpu-led/id4481
 I'm not the first to throw my config/setup stuff into a source control repo, others to look at for inspiration:
 
 https://bitbucket.org/j/dotfiles/src
+
+### MacVim
+
+https://code.google.com/p/macvim/
+
+### GitX (L)
+
+http://gitx.laullon.com/
+
+### Hex Fiend 
+
+http://ridiculousfish.com/hexfiend/
+
+### Spectacle
+
+http://spectacleapp.com/
+
+### Fluid
+
+http://fluidapp.com/
+
+
+### Truecrypt
+
+This ones complicated now.  Get the DMG from Gibson Research Corp:
+
+https://www.grc.com/misc/truecrypt/truecrypt.htm
+
+Now, if you're on Yosemite or later, you'll find that the installer borks.  To fix:
+
+Open the .dmg
+You’ll find the .mpkg. Right*click and “Show Package Contents”
+Open Contents Dir
+Open Packages Dir
+Install each of the 4 packages in this order: OSXFUSECore.pkg, OSXFUSEMacFUSE.pkg, MacFUSE.pkg, TrueCrypt.pkg (It is possible MacFUSE.pkg will install the two before it, but we ran each to play it safe.).
+
+Source (https://lazymind.me/2014/10/install-truecrypt-on-mac-osx-yosemite-10-10/)
