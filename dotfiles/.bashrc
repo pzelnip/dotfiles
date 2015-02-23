@@ -217,5 +217,6 @@ function ccinfodetail {
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+export PATH="/opt/chefdk/bin:$PATH"
 
 export SLACK_WEBHOOK_URL
