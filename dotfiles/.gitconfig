@@ -11,6 +11,7 @@
 [core]
 	editor = vim
 	pager = less -r
+	excludesfile = /Users/aparkin/.gitignore_global
 
 [alias]
     # view a simplified log
@@ -40,3 +41,9 @@
 
 [github]
 	user = pzelnip
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
