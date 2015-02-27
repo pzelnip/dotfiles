@@ -6,3 +6,4 @@ username = Adam Parkin <adam@silkstart.com>
 [extensions]
 strip =
 color =
+purge = 
