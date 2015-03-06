@@ -7,6 +7,8 @@ else
 
     if [ $TYPE = "text" ]; then
         lolcat "$1"
+    elif [ $TYPE = "resource" ]; then
+        lolcat "$1"
     else
         pygmentize "$1"
     fi
