@@ -221,3 +221,13 @@ export PATH="/usr/local/heroku/bin:$PATH"
 export PATH="/opt/chefdk/bin:$PATH"
 
 export SLACK_WEBHOOK_URL
+
+# Vagrant tab completion, install first with:
+#
+# brew tap homebrew/completions
+# brew install vagrant-completion
+#
+# See: https://kura.io/vagrant-bash-completion/#os-x
+if [ -f `brew --prefix`/etc/bash_completion.d/vagrant ]; then
+    source `brew --prefix`/etc/bash_completion.d/vagrant
+fi
