@@ -2,6 +2,9 @@
 [ui]
 username = Adam Parkin <adam@silkstart.com>
 
+[alias]
+revertnobackup = revert --no-backup
+pushbranch = push -b 
 
 [extensions]
 strip =
