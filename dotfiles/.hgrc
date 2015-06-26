@@ -4,7 +4,7 @@ username = Adam Parkin <adam@silkstart.com>
 
 [alias]
 revertnobackup = revert --no-backup
-pushbranch = push -b 
+pushcurrentbranch = !$HG push -b `$HG branch`
 
 [extensions]
 strip =
