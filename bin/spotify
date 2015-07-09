@@ -216,13 +216,13 @@ while [ $# -gt 0 ]; do
 
         "status" )
             state=`osascript -e 'tell application "Spotify" to player state as string'`;
-            cecho "Spotify is currently $state.";
+            #cecho "Spotify is currently $state.";
             if [ $state = "playing" ]; then
                 artist=`osascript -e 'tell application "Spotify" to artist of current track as string'`;
                 album=`osascript -e 'tell application "Spotify" to album of current track as string'`;
                 track=`osascript -e 'tell application "Spotify" to name of current track as string'`;
 
-                echo -e $reset"Artist: $artist\nAlbum: $album\nTrack: $track";
+                echo -e $reset"$artist - $track (from $album)";
             fi
             break ;;
 
