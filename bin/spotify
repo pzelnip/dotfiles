@@ -66,11 +66,11 @@ cecho(){
 
 if [ $# = 0 ]; then
     showHelp;
-else
-    if [ $(osascript -e 'application "Spotify" is running') = "false" ]; then
-        osascript -e 'tell application "Spotify" to activate'
-        sleep 2
-    fi
+#else
+#    if [ $(osascript -e 'application "Spotify" is running') = "false" ]; then
+#        osascript -e 'tell application "Spotify" to activate'
+#        sleep 2
+#    fi
 fi
 while [ $# -gt 0 ]; do
     arg=$1;
