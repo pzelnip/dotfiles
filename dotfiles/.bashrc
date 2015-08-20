@@ -235,3 +235,9 @@ fi
 # Workaround for boot2docker, because it's dumb
 # See: https://github.com/docker/machine/issues/531 for context
 alias dockerm="docker --tlsverify=false"
+
+# setting up Go via homebrew
+export GOPATH=$HOME/golang
+export GOROOT=/usr/local/opt/go/libexec
+export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$GOROOT/bin
