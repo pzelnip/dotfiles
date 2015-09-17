@@ -1,0 +1,12 @@
+# some more ls aliases
+alias ls='ls -Fl'
+
+# adam's aliases
+alias grep='grep --color=auto'
+alias md='mkdir'
+alias cls='clear'
+alias rd='rmdir'
+alias bashrc='\vim ~/.bashrc && source ~/.bashrc'
+alias dusort='du -d 1 -h | sortdu.pl'
+
+PS1="[[\$?] [\D{%a %b %d %Y %l:%M%p (%Z%z)}] \u@\h:\w ]\nλ "
