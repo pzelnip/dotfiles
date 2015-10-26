@@ -110,7 +110,7 @@ PCOLOR="\[\033[\$(promptcol)\]"
 PS1="${TITLEBAR}\
 $BLUE [$GREEN[\$?] [\D{%a %b %d %Y %l:%M%p (%Z%z)}] [Up: \$(uptimeinfo)] $BROWN\u@\h:\w $LIGHT_GRAY\$(__git_ps1)\
 $LIGHT_RED\$(dirty.sh)$BLUE]\
-\n$WHITE\$(spotify status)$PCOLOR λ $LIGHT_GRAY"
+\n$WHITE\$(spotify status | iconv -f utf-8 -t ascii//translit)$PCOLOR λ $LIGHT_GRAY"
 PS2='> '
 PS4='+ '
 }
