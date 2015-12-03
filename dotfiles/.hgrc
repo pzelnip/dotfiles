@@ -1,6 +1,7 @@
 
 [ui]
 username = Adam Parkin <adam@silkstart.com>
+merge = internal:merge
 
 [alias]
 revertnobackup = revert --no-backup
