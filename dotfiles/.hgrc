@@ -6,6 +6,8 @@ merge = internal:merge
 [alias]
 revertnobackup = revert --no-backup
 pushcurrentbranch = !$HG push -b `$HG branch` --new-branch
+commitcount = !hg log --template "{author|person}\n" | sort | uniq -c | sort -nr
+shortlog = commitcount
 
 [extensions]
 strip =
