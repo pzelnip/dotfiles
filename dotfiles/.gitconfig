@@ -8,6 +8,10 @@
 	interactive = auto
 [diff]
 	renames = copies
+
+[diff "spaceman-diff"]
+  command = /usr/local/bin/spaceman-diff
+
 [core]
 	editor = vim
 	pager = less -r
@@ -41,3 +45,5 @@
 
 [github]
 	user = pzelnip
+
+
