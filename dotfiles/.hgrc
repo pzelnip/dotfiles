@@ -8,6 +8,7 @@ revertnobackup = revert --no-backup
 pushcurrentbranch = !$HG push -b `$HG branch` --new-branch
 commitcount = !hg log --template "{author|person}\n" | sort | uniq -c | sort -nr
 shortlog = commitcount
+statdiff = !$HG status ; $HG diff
 
 [extensions]
 strip =
