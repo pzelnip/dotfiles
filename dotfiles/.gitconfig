@@ -32,6 +32,7 @@
     s = status
     d = diff
     dt = difftool
+    sd = !git status && git --no-pager diff
 
     # edit all conflicted files in vim, taken from https://coderwall.com/p/j7kxsa
     edit-conflicts = "!f() { git status -s | grep ^UU | awk '{print $2}' ; }; mvim `f`"
