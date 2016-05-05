@@ -42,6 +42,9 @@
     amnesia = !sh -c 'git update-index --skip-worktree $0'
     recall = !sh -c 'git update-index --no-skip-worktree $0'
     forgetfulness = !git ls-files -v | grep ^S
+
+    # clean up merged branches except current branch, master, or dev
+    cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|dev' | xargs -n 1 git branch -d"
     
 
 [github]
