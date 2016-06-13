@@ -3,6 +3,7 @@
 from __future__ import print_function
 import json
 import sys
+import os
 
 
 def main():
@@ -19,6 +20,7 @@ def main():
                 if contents['mongodb'].has_key('admin'):
                     if contents['mongodb']['admin'].has_key('password'):
                         print (contents['mongodb']['admin']['password'])
+                        os.system('echo %s | pbcopy' % contents['mongodb']['admin']['password'])
 
     except Exception as exc:
         print(exc)
