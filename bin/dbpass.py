@@ -19,8 +19,8 @@ def main():
             if contents.has_key('mongodb'):
                 if contents['mongodb'].has_key('admin'):
                     if contents['mongodb']['admin'].has_key('password'):
-                        print (contents['mongodb']['admin']['password'])
-                        os.system('echo %s | pbcopy' % contents['mongodb']['admin']['password'])
+                        print("password (copied to clipboard): %s" % contents['mongodb']['admin']['password'])
+                        os.system("echo %s | tr -d '\n' | pbcopy" % contents['mongodb']['admin']['password'])
 
     except Exception as exc:
         print(exc)
