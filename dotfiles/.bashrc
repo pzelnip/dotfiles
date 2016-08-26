@@ -135,9 +135,6 @@ mounttc() {
 
 alias md5sum='md5 -r'
 
-alias mount-ydrive='dir="/Volumes/ydrive"; if [ ! -d ${dir} ]; then mkdir ${dir}; fi; sudo mount -t nfs -o proto=tcp 192.168.47.20:/PUBLIC ${dir}; unset dir;'
-alias mount-netfile='dir="/Volumes/netfile"; if [ ! -d ${dir} ]; then mkdir ${dir}; fi; sudo mount -t nfs -o proto=tcp,vers=4 192.168.40.42:/ ${dir}; unset dir;'
-
 alias cat='cat.sh'
 
 #JAVA_HOME="/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Home/"
