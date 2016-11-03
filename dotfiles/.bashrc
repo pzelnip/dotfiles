@@ -246,3 +246,9 @@ complete -W "$(echo `cat ~/.ssh/known_hosts | cut -f 1 -d ' ' | sed -e s/,.*//g 
 function iterm2_print_user_vars() {
   iterm2_set_user_var gitBranch $((git branch 2> /dev/null) | grep \* | cut -c3-)
 }
+
+# cowsay on new prompt, inspired by https://schier.co/blog/2016/08/09/add-colorful-cows-to-your-terminal/
+# Uses java cowsay, get at https://github.com/ricksbrown/cowsay
+# install fortune via brew
+# and lolcat is just, well, something you should always have
+java -jar ~/bin/cowsay.jar -f `java -jar ~/bin/cowsay.jar -l   | awk 'BEGIN { srand() } int(rand() * NR) == 0 { x = $0 } END { print x }'` `fortune` | lolcat
