@@ -251,4 +251,4 @@ function iterm2_print_user_vars() {
 # Uses java cowsay, get at https://github.com/ricksbrown/cowsay
 # install fortune via brew
 # and lolcat is just, well, something you should always have
-java -jar ~/bin/cowsay.jar -f `java -jar ~/bin/cowsay.jar -l   | awk 'BEGIN { srand() } int(rand() * NR) == 0 { x = $0 } END { print x }'` `fortune` | lolcat
+java -jar ~/bin/cowsay.jar -f `java -jar ~/bin/cowsay.jar -l   | awk 'BEGIN { srand() } int(rand() * NR) == 0 { x = $0 } END { print x }'` "`fortune`" | lolcat
