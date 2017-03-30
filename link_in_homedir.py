@@ -20,10 +20,22 @@ def bindir():
     call(["lndir", fromdir, todir])
     print "Linked %s to %s" % (fromdir, todir)
 
+def gittemplatesdir():
+    fromdir = os.path.join(os.getcwd(), ".git-templates")
+    todir = os.path.join(os.environ['HOME'], ".git-templates")
+    try:
+        os.mkdir(todir)
+    except OSError as e:
+        pass # directory already exists
+
+    call(["lndir", fromdir, todir])
+    print "Linked %s to %s" % (fromdir, todir)
+
 
 def main():
     dotfilesdir()
     bindir()
+    gittemplatesdir()
 
 
 if __name__ == "__main__":
