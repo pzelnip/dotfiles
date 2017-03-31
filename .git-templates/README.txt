@@ -1,0 +1,1 @@
+Ideas taken from: https://dev.to/ebud7/how-to-customise-your-git-commit-message-
