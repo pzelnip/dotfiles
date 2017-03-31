@@ -7,6 +7,9 @@ HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
 # ... or force ignoredups and ignorespace
 HISTCONTROL=ignoreboth
 
+# include timestamps in the output of the history command
+HISTTIMEFORMAT="%d/%m/%y %T "
+
 # append to the history file, don't overwrite it
 shopt -s histappend
 
