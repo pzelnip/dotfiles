@@ -16,6 +16,8 @@ python link_in_homedir.py
 
 to create symbolic links from all the files into the home directory of the currently logged in user.
 
+Edit: most recently for setting up a new machine at a new job I skipped this step and just copied everything in `dotfiles` to `~` and everything in `bin/` to `~/bin` instead of simlinking.  This is partly as A) installing Quartz toolkit just to get lndir is crazysauce, and B) I've found that it's rare I update the stuff in this repo, and it's not uncommon to want to make "custom" changes to files that are specific to a machine.  As such it sometimes makes more sense to use the stuff here as "starting points", and revise as needed on a particular machine.
+
 ## Caveats/Issues/Notes
 
 ### Username
