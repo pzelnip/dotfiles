@@ -65,6 +65,8 @@ Hotkey for maximizing windows (taken from: http://scratching.psybermonkey.net/20
 
 ### Caffeine
 
+Edit: Caffeine appears to have been pulled from the App store.  Instead I now use Amphetamine: https://itunes.apple.com/ca/app/amphetamine/id937984704?mt=12
+
 Install Caffeine from the app store: http://itunes.apple.com/us/app/caffeine/id411246225
 
 ### MenuCalendarClock for iCal
