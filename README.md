@@ -69,11 +69,13 @@ Edit: Caffeine appears to have been pulled from the App store.  Instead I now us
 
 Install Caffeine from the app store: http://itunes.apple.com/us/app/caffeine/id411246225
 
-### MenuCalendarClock for iCal
+### Calendar in menubar
 
-Edit: MenuCalendarClock seems to be abandonware now, most recently I installed https://www.mowglii.com/itsycal/ as an alternative.
+I've moved through various solutions for this, most recently Calendar 2: https://qbix.com/calendar (pick Calendar 2 once you get to the app store, should be free)
 
-See: http://download.cnet.com/MenuCalendarClock-for-iCal/3000-2124_4-18953.html
+https://www.mowglii.com/itsycal/ is an alternative.
+
+Previously used MenuCalendarClock for iCal ( http://download.cnet.com/MenuCalendarClock-for-iCal/3000-2124_4-18953.html ) but this appears to be abandonware now
 
 Some settings for it:
 
