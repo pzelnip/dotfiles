@@ -28,7 +28,7 @@
 
 	co = checkout
 
-    b = branch
+    #b = branch
     s = status
     d = diff
     dt = difftool
@@ -45,7 +45,9 @@
 
     # clean up merged branches except current branch, master, or dev
     cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|dev' | xargs -n 1 git branch -d"
-    
+
+    b = "!. ~/.githelpers && pretty_git_branch"
+    bs = "!. ~/.githelpers && pretty_git_branch_sorted"
 
 [github]
 	user = pzelnip
