@@ -64,7 +64,7 @@
     l = "!. ~/.githelpers && pretty_git_log"
     la = !git l --all
 
-    fetch = !sh -c 'git fetch $1 --prune' -
+    fp = !sh -c 'git fetch $1 --prune' -
 
 [github]
 	user = pzelnip
