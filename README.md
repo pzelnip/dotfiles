@@ -128,3 +128,13 @@ Open Packages Dir
 Install each of the 4 packages in this order: OSXFUSECore.pkg, OSXFUSEMacFUSE.pkg, MacFUSE.pkg, TrueCrypt.pkg (It is possible MacFUSE.pkg will install the two before it, but we ran each to play it safe.).
 
 Source (https://lazymind.me/2014/10/install-truecrypt-on-mac-osx-yosemite-10-10/)
+
+dfadfa
+dfadfa
+dfadfa
+dfadfa
+dfadfa
+dfadfa
+dfadfa
+dfadfa
+dfadfa
