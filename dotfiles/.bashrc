@@ -14,6 +14,8 @@ HISTTIMEFORMAT="%d/%m/%y %T "
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+export HISTFILESIZE=50000
+export HISTSIZE=10000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -37,6 +39,14 @@ alias dusort='du -d 1 -h | sortdu.pl'
 alias gitk='gitk --all'
 
 alias dos2unix="perl -pe 's/\r\n|\n|\r/\n/g'"
+
+alias kill_stopped_docker_containers='docker ps -aq --no-trunc | xargs docker rm'
+alias kill_untagged_docker_images='docker images --format "{{.ID}}\t{{.Tag}}" | grep "<none>" | awk "{ print \$1}" | xargs docker rmi'
+
+# inspired by https://stackoverflow.com/a/68390/808804
+alias topcommands="history | tr -s ' ' | cut -d ' ' -f 5 | sort | uniq -c | sort -nr | head"
+
+alias subl="/Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl"
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -213,8 +223,6 @@ function ccinfo {
 function ccinfodetail {
   curl http://192.168.1.149:8008/setup/eureka_info?options=detail | python -mjson.tool
 }
-
-
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
