@@ -64,7 +64,7 @@
     l = "!. ~/.githelpers && pretty_git_log"
     la = !git l --all
 
-    fp = !sh -c 'git fetch $1 --prune' -
+    fp2 = !sh -c 'git remote | xargs -n 1 git fetch -v --prune $1'
 
 [github]
 	user = pzelnip
