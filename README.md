@@ -49,25 +49,15 @@ At the time of writing the only way to restore this config is to copy it (or sim
 $ ln -s com.googlecode.iterm2.plist ~/Library/Preferences/
 ```
 
+Edit: I've given up on this as literally *every* single time I've tried simlinking to the same settings file it's borked.  I really wish there was a reliable way to easily save & restore iterm settings, but I have yet to find it.
+
 ## Other Setup Stuff
 
-### Maximize Hotkey
+### Amphetamine
 
-Hotkey for maximizing windows (taken from: http://scratching.psybermonkey.net/2011/01/osx-how-to-maximize-window-using.html)
+Amphetamine: https://itunes.apple.com/ca/app/amphetamine/id937984704?mt=12
 
-- Open the "System Preferences"
-- Under the "Hardware" section, click on "Keyboard"
-- Next, click on "Keyboard Shortcuts" then "Application Shortcuts" (on the left hand box)
-- Add a shortcut key by clicking on "+" symbol, on the bottom of the right hand box
-- At the next dialog box, choose "All Applications" for "Application:"
-- In the "Menu Title :" column, type in "Zoom"
-- Click on the next column, "Keyboard Shortcut:", then press your preferred keyboard shortcut. E.g. Control + Option + Command + m (you didn't read wrongly, is 4 keys there :p)
-
-### Caffeine
-
-Edit: Caffeine appears to have been pulled from the App store.  Instead I now use Amphetamine: https://itunes.apple.com/ca/app/amphetamine/id937984704?mt=12
-
-Install Caffeine from the app store: http://itunes.apple.com/us/app/caffeine/id411246225
+Previously I used Caffeine from the app store: http://itunes.apple.com/us/app/caffeine/id411246225 but that appears to now be deprecated
 
 ### Calendar in menubar
 
@@ -85,12 +75,6 @@ Some settings for it:
 ### CPULed
 
 Install CPULED from the appstore: https://itunes.apple.com/ca/app/cpu-led/id448189857?mt=12
-
-## Other Examples of This
-
-I'm not the first to throw my config/setup stuff into a source control repo, others to look at for inspiration:
-
-https://bitbucket.org/j/dotfiles/src
 
 ### MacVim
 
@@ -112,7 +96,6 @@ http://spectacleapp.com/
 
 http://fluidapp.com/
 
-
 ### Truecrypt
 
 This ones complicated now.  Get the DMG from Gibson Research Corp:
@@ -128,3 +111,11 @@ Open Packages Dir
 Install each of the 4 packages in this order: OSXFUSECore.pkg, OSXFUSEMacFUSE.pkg, MacFUSE.pkg, TrueCrypt.pkg (It is possible MacFUSE.pkg will install the two before it, but we ran each to play it safe.).
 
 Source (https://lazymind.me/2014/10/install-truecrypt-on-mac-osx-yosemite-10-10/)
+
+## Other Examples of This
+
+I'm not the first to throw my config/setup stuff into a source control repo, others to look at for inspiration:
+
+https://bitbucket.org/j/dotfiles/src
+
+https://github.com/garybernhardt/dotfiles
