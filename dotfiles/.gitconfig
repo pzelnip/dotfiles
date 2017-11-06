@@ -58,6 +58,7 @@
     la = !git l --all
 
     fp2 = !sh -c 'git remote | xargs -n 1 git fetch -v --prune $1'
+    graph = log --oneline --decorate --graph
 
 [github]
 	user = pzelnip
