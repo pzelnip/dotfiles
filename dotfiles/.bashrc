@@ -42,6 +42,7 @@ alias dos2unix="perl -pe 's/\r\n|\n|\r/\n/g'"
 
 alias kill_stopped_docker_containers='docker ps -aq --no-trunc | xargs docker rm'
 alias kill_untagged_docker_images='docker images --format "{{.ID}}\t{{.Tag}}" | grep "<none>" | awk "{ print \$1}" | xargs docker rmi'
+alias shell_into_first_docker_container='docker exec -it $(docker ps | sed -n 2p | cut -d" "  -f 1) /bin/sh'
 
 # inspired by https://stackoverflow.com/a/68390/808804
 alias topcommands="history | tr -s ' ' | cut -d ' ' -f 5 | sort | uniq -c | sort -nr | head"
