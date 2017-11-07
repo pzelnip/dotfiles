@@ -60,6 +60,8 @@
     fp2 = !sh -c 'git remote | xargs -n 1 git fetch -v --prune $1'
     graph = log --oneline --decorate --graph
 
+    forcepush = push --force-with-lease
+
 [github]
 	user = pzelnip
 
