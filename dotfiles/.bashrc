@@ -266,3 +266,8 @@ function iterm2_print_user_vars() {
 java -jar ~/bin/cowsay.jar -f `java -jar ~/bin/cowsay.jar -l   | awk 'BEGIN { srand() } int(rand() * NR) == 0 { x = $0 } END { print x }'` "`fortune`" | lolcat
 
 #VAGRANT_HOME=/Users/aparkin/Desktop/exclude/ss/.vagrant.d
+
+alias spot="spotify"
+
+export AWS_SAML_USER='ad0418340@ad'
+export AWS_SAML_REGION='ca-central-1'
