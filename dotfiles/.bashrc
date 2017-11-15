@@ -241,9 +241,17 @@ if [ -f `brew --prefix`/etc/bash_completion.d/vagrant ]; then
     source `brew --prefix`/etc/bash_completion.d/vagrant
 fi
 
-# Workaround for boot2docker, because it's dumb
-# See: https://github.com/docker/machine/issues/531 for context
-alias dockerm="docker --tlsverify=false"
+# docker tab completion, on OSX simlink to the completion scripts with:
+#
+#
+# find /Applications/Docker.app \
+# -type f -name "*.bash-completion" \
+# -exec ln -s "{}" "$(brew --prefix)/etc/bash_completion.d/" \;
+#
+# see: https://stackoverflow.com/a/38421283/808804
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+. $(brew --prefix)/etc/bash_completion
+fi
 
 # setting up Go via homebrew
 export GOPATH=$HOME/golang
