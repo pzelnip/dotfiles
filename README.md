@@ -78,6 +78,10 @@ it.
 
 ## Other Setup Stuff
 
+### Autojump
+
+<https://github.com/wting/autojump>
+
 ### Amphetamine
 
 Amphetamine: <https://itunes.apple.com/ca/app/amphetamine/id937984704?mt=12>
