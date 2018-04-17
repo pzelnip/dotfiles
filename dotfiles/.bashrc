@@ -72,7 +72,7 @@ fi
 #function parse_git_branch {
 #  local branch=$(__git_ps1 "%s")
 #  [[ $branch ]] && echo "[$branch$(parse_git_dirty)]"
-#} 
+#}
 #
 export GIT_PS1_SHOWDIRTYSTATE=1
 
@@ -118,8 +118,8 @@ function proml {
 
 PCOLOR="\[\033[\$(promptcol)\]"
 
-# note that in the following prompt the error code item (\$?) must be the 
-# first item in the prompt.  Otherwise it'll show the errorcode for the last 
+# note that in the following prompt the error code item (\$?) must be the
+# first item in the prompt.  Otherwise it'll show the errorcode for the last
 # command executed in producing the prompt.
 PS1="${TITLEBAR}\
 $BLUE [$GREEN[\$?] [\D{%a %b %d %Y %l:%M%p (%Z%z)}] [Up: \$(uptimeinfo)] $BROWN\u@\h:\w $LIGHT_GRAY\$(__git_ps1)\
@@ -151,6 +151,9 @@ alias md5sum='md5 -r'
 
 alias cat='cat.sh'
 
+# start a simple Python server, see https://stackoverflow.com/a/46595749/808804
+alias serve="python -m $(python -c 'import sys; print("http.server" if sys.version_info[:2] > (2,7) else "SimpleHTTPServer")')"
+
 #JAVA_HOME="/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Home/"
 #JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home"
 JAVA_HOME=$(/usr/libexec/java_home)
@@ -160,7 +163,7 @@ STASH_HOME="${HOME}/Downloads/stash/stash-home"
 export STASH_HOME
 
 SONAR_RUNNER_HOME="${HOME}/Downloads/sonar/sonarrunner"
-export SONAR_RUNNER_HOME 
+export SONAR_RUNNER_HOME
 export PATH=$PATH:$SONAR_RUNNER_HOME/bin
 
 #SLACK_WEBHOOK_URL="https://pzelnip.slack.com/services/hooks/incoming-webhook?token=Ta4BRUMStaB5ahT4Y76eT1Hi"
@@ -172,7 +175,7 @@ export SLACK_WEBHOOK_URL
 source ~/.passwords
 
 # base64 encode a string & copy to clipboard
-# use like: echo "encode this string" | b64 
+# use like: echo "encode this string" | b64
 # taken from: https://coderwall.com/p/tgmdia
 function b64() {
    base64 | pbcopy
