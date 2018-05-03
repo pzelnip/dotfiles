@@ -1,6 +1,6 @@
 [user]
-	name = Adam Parkin 
-	email = pzelnip@gmail.com 
+	name = Adam Parkin
+	email = pzelnip@gmail.com
 [color]
 	diff = auto
 	status = auto
@@ -61,6 +61,8 @@
     graph = log --oneline --decorate --graph
 
     forcepush = push --force-with-lease
+
+    cleanbranches = !sh -c 'git remote | xargs -n 1 git fetch -v --prune $1 && git branch --merged | egrep -v master | egrep -v develop | xargs git branch -d'
 
 [github]
 	user = pzelnip
