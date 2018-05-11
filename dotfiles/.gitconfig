@@ -63,8 +63,8 @@
     forcepush = push --force-with-lease
 
     cleanbranches = !sh -c 'git remote | xargs -n 1 git fetch -v --prune $1 && git branch --merged | egrep -v master | egrep -v develop | xargs git branch -d'
-    psom = 'push origin master'
-    plom = 'pull origin master'
+    psom = push origin master
+    plom = pull origin master
 
 [github]
 	user = pzelnip
