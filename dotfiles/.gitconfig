@@ -65,6 +65,7 @@
     cleanbranches = !sh -c 'git remote | xargs -n 1 git fetch -v --prune $1 && git branch --merged | egrep -v master | egrep -v develop | xargs git branch -d'
     psom = push origin master
     plom = pull origin master
+    plod = pull origin develop
 
 [github]
 	user = pzelnip
