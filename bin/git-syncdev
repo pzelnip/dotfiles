@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# because some repos I have "dev" or "develop" or "development" as
+# the branch name, do a slightly fuzzy match of the dev branch name
+BRANCH=$(git branch | grep '^\**\s*dev' | head -n 1 | tr -d \*)
+echo "Syncing $BRANCH"
+git pull origin $BRANCH
