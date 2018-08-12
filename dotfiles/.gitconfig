@@ -66,6 +66,7 @@
     psom = push origin master
     plom = pull origin master
     plod = syncdev
+    stashdropbecarefulbecausethisisdangerous = !sh -c 'git stash && git stash drop'
 
 [github]
 	user = pzelnip
