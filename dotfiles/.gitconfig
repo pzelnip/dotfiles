@@ -67,6 +67,7 @@
     plom = pull origin master
     plod = syncdev
     stashdropbecarefulbecausethisisdangerous = !sh -c 'git stash && git stash drop'
+    plomclean = !sh -c 'git plom && git cleanbranches'
 
 [github]
 	user = pzelnip
