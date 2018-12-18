@@ -282,3 +282,7 @@ alias spot="spotify"
 
 export AWS_SAML_USER='ad0418340@ad'
 export AWS_SAML_REGION='ca-central-1'
+
+function awsparam {
+    aws ssm get-parameter --name $1 --with-decryption | jq -r '.Parameter|.Value' | pbcopy
+}
