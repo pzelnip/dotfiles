@@ -43,8 +43,8 @@
     recall = !sh -c 'git update-index --no-skip-worktree $0'
     forgetfulness = !git ls-files -v | grep ^S
 
-    # clean up merged branches except current branch, master, or dev
-    cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|dev' | xargs -n 1 git branch -d"
+    # clean up merged branches except current branch, master, or dev, or production
+    cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|dev|production' | xargs -n 1 git branch -d"
 
     bp = "!. ~/.githelpers && pretty_git_branch"
     bs = "!. ~/.githelpers && pretty_git_branch_sorted"
@@ -62,12 +62,18 @@
 
     forcepush = push --force-with-lease
 
-    cleanbranches = !sh -c 'git remote | xargs -n 1 git fetch -v --prune $1 && git branch --merged | egrep -v master | egrep -v develop | xargs git branch -d'
+    cleanbranches = !sh -c 'git remote | xargs -n 1 git fetch -v --prune $1 && git branch --merged | egrep -v master | egrep -v develop | egrep -v production | egrep -v mainline | xargs git branch -d'
     psom = push origin master
     plom = pull origin master
+    ploml = pull origin mainline
+    plop = pull origin production
     plod = syncdev
     stashdropbecarefulbecausethisisdangerous = !sh -c 'git stash && git stash drop'
     plomclean = !sh -c 'git plom && git cleanbranches'
+    plomlclean = !sh -c 'git ploml && git cleanbranches'
+
+    plodclean = !sh -c 'git plod && git cleanbranches'
+    plopclean = !sh -c 'git plop && git cleanbranches'
 
 [github]
 	user = pzelnip
