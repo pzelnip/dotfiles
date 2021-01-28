@@ -31,9 +31,8 @@ alias ls='ls -Fl'
 alias grep='grep --color=auto'
 alias md='mkdir'
 alias cls='clear'
-alias vi='mvim'
 alias rd='rmdir'
-alias bashrc='\vim ~/.bashrc && source ~/.bashrc'
+alias bashrc='\vim ~/.bashrc && time source ~/.bashrc'
 alias dusort='du -d 1 -h | sortdu.pl'
 
 alias gitk='gitk --all'
@@ -65,15 +64,15 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-#function parse_git_dirty {
-#  git diff --quiet HEAD &>/dev/null
-#  [[ $? == 1 ]] && echo "⚡"
-#}
-#function parse_git_branch {
-#  local branch=$(__git_ps1 "%s")
-#  [[ $branch ]] && echo "[$branch$(parse_git_dirty)]"
-#}
-#
+function parse_git_dirty {
+ git diff --quiet HEAD &>/dev/null
+ [[ $? == 1 ]] && echo "⚡"
+}
+function parse_git_branch {
+ local branch=$(__git_ps1 "%s")
+ [[ $branch ]] && echo "[$branch$(parse_git_dirty)]"
+}
+
 export GIT_PS1_SHOWDIRTYSTATE=1
 
 
@@ -134,18 +133,9 @@ export WORKON_HOME=~/.envs
 source /usr/local/bin/virtualenvwrapper.sh
 
 source ~/bin/git-completion.bash
-source ~/bin/hg_bash_completion.bash
 
 export PATH=/usr/local/bin:$PATH:/Applications/Xcode.app/Contents/Developer/usr/bin
-#:Applications/Postgres.app/Contents/Versions/9.3/bin
 export PATH=$PATH:~/bin
-
-alias truecrypt='/Applications/TrueCrypt.app/Contents/MacOS/Truecrypt --text'
-alias mountusb='/Applications/TrueCrypt.app/Contents/MacOS/Truecrypt --text --mount /Volumes/NO\ NAME/mainData.tc /Volumes/usbarchive'
-
-mounttc() {
-    /Applications/TrueCrypt.app/Contents/MacOS/Truecrypt --text --mount $1 /Volumes/$1
-}
 
 alias md5sum='md5 -r'
 
@@ -159,18 +149,6 @@ alias serve="python -m $(python -c 'import sys; print("http.server" if sys.versi
 JAVA_HOME=$(/usr/libexec/java_home)
 export JAVA_HOME
 
-STASH_HOME="${HOME}/Downloads/stash/stash-home"
-export STASH_HOME
-
-SONAR_RUNNER_HOME="${HOME}/Downloads/sonar/sonarrunner"
-export SONAR_RUNNER_HOME
-export PATH=$PATH:$SONAR_RUNNER_HOME/bin
-
-#SLACK_WEBHOOK_URL="https://pzelnip.slack.com/services/hooks/incoming-webhook?token=Ta4BRUMStaB5ahT4Y76eT1Hi"
-SLACK_WEBHOOK_URL="https://hooks.slack.com/services/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"
-
-export SLACK_WEBHOOK_URL
-
 # source some env vars that I don't want in version control
 source ~/.passwords
 
@@ -181,58 +159,12 @@ function b64() {
    base64 | pbcopy
 }
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-
 # cd to the git root directory (ie if in /myproject/src/main/java/com/foobar/baz
 # a cd-gitroot will return you to /myproject)
 # https://coderwall.com/p/zro3qg
 alias cd-gitroot='cd $(git rev-parse --show-toplevel)'
 
-alias vimdiff='mvim -d'
 alias git-copybranch="git branch | grep '*' | tr -d ' *\n' | pbcopy"
-
-
-# start youtube on my chromecast, taken from:
-# https://coderwall.com/p/jvuzdg
-# http://fiquett.com/2013/07/chromecast-traffic-sniffing/
-function ccytplay {
-  curl -H "Content-Type: application/json" \
-    http://192.168.1.149:8008/apps/YouTube \
-    -X POST \
-    -d "v=$1";
-}
-
-# quit Youtube on the chromecast
-function ccytquit {
-  curl -H "Content-Type: application/json" \
-    http://192.168.1.149:8008/apps/YouTube \
-    -X DELETE;
-}
-
-function ccytstatus {
-curl -H "Content-Type: application/json" http://192.168.1.149:8008/apps/YouTube -X GET
-}
-
-# search Youtube for a query string on the command line
-function ytsearch() {
-  curl -s https://www.youtube.com/results\?search_query\=$@ | \
-    grep -o 'watch?v=[^"]*"[^>]*title="[^"]*' | \
-    sed -e 's/^watch\?v=\([^"]*\)".*title="\(.*\)/\1 \2/g'
-}
-
-function ccinfo {
-  curl http://192.168.1.149:8008/ssdp/device-desc.xml
-}
-
-function ccinfodetail {
-  curl http://192.168.1.149:8008/setup/eureka_info?options=detail | python -mjson.tool
-}
-
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
-export PATH="/opt/chefdk/bin:$PATH"
-
-export SLACK_WEBHOOK_URL
 
 # Vagrant tab completion, install first with:
 #
@@ -268,6 +200,7 @@ complete -W "$(echo `cat ~/.ssh/known_hosts | cut -f 1 -d ' ' | sed -e s/,.*//g 
 # bash: Place this in .bashrc.
 function iterm2_print_user_vars() {
   iterm2_set_user_var gitBranch $((git branch 2> /dev/null) | grep \* | cut -c3-)
+  iterm2_set_user_var pythonVersion $(python --version)
 }
 
 # cowsay on new prompt, inspired by https://schier.co/blog/2016/08/09/add-colorful-cows-to-your-terminal/
@@ -276,13 +209,6 @@ function iterm2_print_user_vars() {
 # and lolcat is just, well, something you should always have
 java -jar ~/bin/cowsay.jar -f `java -jar ~/bin/cowsay.jar -l   | awk 'BEGIN { srand() } int(rand() * NR) == 0 { x = $0 } END { print x }'` "`fortune`" | lolcat
 
-#VAGRANT_HOME=/Users/aparkin/Desktop/exclude/ss/.vagrant.d
-
 alias spot="spotify"
 
-export AWS_SAML_USER='ad0418340@ad'
-export AWS_SAML_REGION='ca-central-1'
-
-function awsparam {
-    aws ssm get-parameter --name $1 --with-decryption | jq -r '.Parameter|.Value' | pbcopy
-}
+function joke { curl -s -H "Accept: application/json" https://icanhazdadjoke.com/ | jq ".joke"; }
