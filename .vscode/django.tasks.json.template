@@ -1,0 +1,81 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "options": {
+        "env": {
+            "DJANGO_SETTINGS_MODULE": "path.to.settings",
+            "MODULE_NAME": "name.of.your.module",
+            "TEST_PACKAGES": "path/to/tests",
+            "SERVER_PORT": "5001",
+        },
+    },
+    "tasks": [
+        {
+            "label": "Run Server",
+            "type": "shell",
+            "command": "${config:python.pythonPath} manage.py runserver",
+            "presentation": {
+                "group": "groupServerStuff"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Healthcheck (requires running server)",
+            "type": "shell",
+            "command": "curl http://127.0.0.1:$SERVER_PORT/health",
+            "presentation": {
+                "group": "groupServerStuff",
+                "focus": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Django Shell",
+            "type": "shell",
+            "command": "${config:python.pythonPath} manage.py shell_plus",
+            "presentation": {
+                "focus": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "DB Shell",
+            "type": "shell",
+            "command": "${config:python.pythonPath} manage.py dbshell",
+            "presentation": {
+                "focus": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Generate Coverage Report",
+            "type": "shell",
+            "group": "test",
+            "command": "${config:python.pythonPath} -m pytest --cov=$MODULE_NAME --cov-report html:./test-coverage --cov-report xml:./test-coverage/coverage.xml --junitxml=./test-reports/test_report.xml --ds=$DJANGO_SETTINGS_MODULE $TEST_PACKAGES && open ./test-coverage/index.html"
+        },
+        {
+            "label": "Run Unit Tests",
+            "type": "shell",
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "command": "${config:python.pythonPath} -m pytest -rfxXs --ds=$DJANGO_SETTINGS_MODULE $TEST_PACKAGES --lf",
+            "problemMatcher": []
+        },
+        {
+            "label": "Pip Install Python package",
+            "type": "shell",
+            "command": "${config:python.pythonPath} -m pip install --upgrade ${input:packageName}",
+            "problemMatcher": []
+        },
+    ],
+    "inputs": [
+        {
+            "id": "packageName",
+            "type": "promptString",
+            "description": "Name of package to install?",
+        },
+    ]
+}
