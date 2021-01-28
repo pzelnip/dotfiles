@@ -1,5 +1,7 @@
 # Adam's Home Directory Stuff
 
+NOTE: this readme is incredibly out of date and needs to be revised.
+
 This repo contains some of the stuff from my home directory on my work machine.
 
 Included are my basic config files and a bin directory that I typically add to
