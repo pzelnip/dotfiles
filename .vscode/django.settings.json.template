@@ -1,0 +1,9 @@
+{
+    "python.pythonPath": "/path/to/python/executable",
+    "editor.formatOnPaste": false,
+    "python.linting.pylintArgs": [
+        "--load-plugins",
+        "pylint_django"
+    ],
+    "editor.formatOnSave": true,
+}
