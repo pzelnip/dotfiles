@@ -199,8 +199,8 @@ complete -W "$(echo `cat ~/.ssh/known_hosts | cut -f 1 -d ' ' | sed -e s/,.*//g 
 
 # bash: Place this in .bashrc.
 function iterm2_print_user_vars() {
-  iterm2_set_user_var gitBranch $((git branch 2> /dev/null) | grep \* | cut -c3-)
-  iterm2_set_user_var pythonVersion $(python --version)
+  iterm2_set_user_var gitBranch $((git branch 2> /dev/null) | grep \* | cut -c3-);
+  iterm2_set_user_var pythonVersion $(python -c "import platform; print(platform.python_version())");
 }
 
 # cowsay on new prompt, inspired by https://schier.co/blog/2016/08/09/add-colorful-cows-to-your-terminal/
