@@ -14,6 +14,10 @@
 	<integer>1</integer>
 	<key>AppleWindowTabbingMode</key>
 	<string>manual</string>
+	<key>BadgeFontIsBold</key>
+	<false/>
+	<key>BadgeMaxHeightFraction</key>
+	<real>0.20000000298023224</real>
 	<key>CopySelection</key>
 	<false/>
 	<key>Default Bookmark Guid</key>
@@ -33,6 +37,18 @@
 		<dict>
 			<key>ASCII Anti Aliased</key>
 			<true/>
+			<key>AWDS Pane Directory</key>
+			<string></string>
+			<key>AWDS Pane Option</key>
+			<string>No</string>
+			<key>AWDS Tab Directory</key>
+			<string></string>
+			<key>AWDS Tab Option</key>
+			<string>No</string>
+			<key>AWDS Window Directory</key>
+			<string></string>
+			<key>AWDS Window Option</key>
+			<string>No</string>
 			<key>Ambiguous Double Width</key>
 			<false/>
 			<key>Ansi 0 Color</key>
@@ -192,6 +208,18 @@
 			</dict>
 			<key>Background Image Location</key>
 			<string></string>
+			<key>Badge Font</key>
+			<string>Helvetica</string>
+			<key>Badge Max Height</key>
+			<real>0.089999999999999997</real>
+			<key>Badge Max Width</key>
+			<real>0.5</real>
+			<key>Badge Right Margin</key>
+			<real>10</real>
+			<key>Badge Text</key>
+			<string>\(user.pythonVersion)</string>
+			<key>Badge Top Margin</key>
+			<real>10</real>
 			<key>Blinking Cursor</key>
 			<false/>
 			<key>Blur</key>
@@ -258,6 +286,8 @@
 			<string>2B329B46-98A6-45D3-93CA-4F228F1BB18F</string>
 			<key>Horizontal Spacing</key>
 			<real>1</real>
+			<key>Icon</key>
+			<integer>1</integer>
 			<key>Idle Code</key>
 			<integer>0</integer>
 			<key>Jobs to Ignore</key>
@@ -619,7 +649,7 @@
 			<key>Shortcut</key>
 			<string></string>
 			<key>Show Mark Indicators</key>
-			<false/>
+			<true/>
 			<key>Show Status Bar</key>
 			<true/>
 			<key>Silence Bell</key>
@@ -829,8 +859,10 @@
 								<integer>1</integer>
 								<key>auto-rainbow style</key>
 								<integer>0</integer>
+								<key>font</key>
+								<string>.AppleSystemUIFont 12</string>
 								<key>remove empty components</key>
-								<false/>
+								<true/>
 							</dict>
 						</dict>
 					</dict>
