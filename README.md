@@ -1,154 +1,119 @@
 # Adam's Home Directory Stuff
 
-NOTE: this readme is incredibly out of date and needs to be revised.
-
-This repo contains some of the stuff from my home directory on my work machine.
+This repo contains some of the stuff from my home directory on most machines
+(primarily Mac machines) I use.
 
 Included are my basic config files and a bin directory that I typically add to
-my PATH with various tools & utilities.
+my `PATH` with various tools & utilities.
 
 This was inspired by a number of talks at Polyglot 2013, as well as the
 discussion at:
 
 <http://stackoverflow.com/questions/17082038/efficient-way-to-manage-a-git-repository-for-local-config-files>
 
-To copy everything to the current user's home directory, do a:
+I used to have a script (`link_in_homedir.py`) that symlinked everything from this
+repo to my actual home directory.  The thing I found though is that there's
+always machine specific config that makes that difficult, and I'd end up just
+copying stuff from my checked out copy of this repo to my home directory.  The
+script is still around for inspiration, but is very much deprecated now.
 
-```bash
-python link_in_homedir.py
-```
+## Structure
 
-to create symbolic links from all the files into the home directory of the
-currently logged in user.
+There are a handful of directories:
 
-Edit: most recently for setting up a new machine at a new job I skipped this
-step and just copied everything in `dotfiles` to `~` and everything in `bin/`
-to `~/bin` instead of simlinking.  This is partly as A) installing Quartz
-toolkit just to get `lndir` is crazysauce, and B) I've found that it's rare I
-update the stuff in this repo, and it's not uncommon to want to make "custom"
-changes to files that are specific to a machine.  As such it sometimes makes
-more sense to use the stuff here as "starting points", and revise as needed
-on a particular machine.
+* `/dotfiles` - contains all hidden files that normally go in my root home
+  directory (think things like `.bashrc`, `.gitconfig`, etc)
+* `/bin` - a handful of various utilities & scripts to make life easier. I
+  usually put this into my PATH.
+* `/.git-templates` - some handy Git related hooks & such.
+* `/.vscode` - some templates for tasks.json & settings files for
+  [the best editor out there](https://code.visualstudio.com/)
+* `/iterm` - I use [iTerm2](https://iterm2.com/) as my terminal of choice.
+  Sometimes I export my settings for it to this directory
+
+Most of these directories should be considered starting points for setting
+stuff up.  Many of the files within them have to be tweaked to work for a
+specific machine.
 
 ## Caveats/Issues/Notes
 
-### Username
-
-Previously, some of the scripts assume a username of "aparkin", and failure to
-run them under a user with this name would result in weird stuff happening (ie -
-stuff breaks).  I *think* I have resolved this issue, however, this is (at the
-time of this writing) untested.
-
-### lndir
-
-`lndir` is required for the scripts to work.  On OSX Lion, this command is
-(I believe) included by default.  On Mountain Lion or later you'll have to
-install the Quartz toolkit to get it, see:
-
-<http://xquartz.macosforge.org/landing/>
-
 ### Python Stuff
 
-There's various Python utilities required:
-
-```shell
-
-sudo easy_install pip
-sudo pip install virtualenv
-sudo pip install virtualenvwrapper
-
-```
+There's various Python utilities required for some of the scripts in bin.
+Make sure you have a decent version of Python and pip installed.
 
 ### iTerm2
 
 I use [iTerm2](http://www.iterm2.com/#/section/home) as my terminal of choice,
 and my config can be found in `iterm/`
 
-At the time of writing the only way to restore this config is to copy it (or
-simlink it) to ```~/Library/Preferences/``` for example:
-
-```shell
-
-ln -s com.googlecode.iterm2.plist ~/Library/Preferences/
-
-```
-
-Edit: I've given up on this as literally *every* single time I've tried
-simlinking to the same settings file it's borked.  I really wish there was a
-reliable way to easily save & restore `iTerm` settings, but I have yet to find
-it.
+Having said that, I've largely given up on this as I've found that importing
+settings from this folder often breaks in weird ways.  If someone has a good
+way for exporting iTerm settings, please let me know.
 
 ## Other Setup Stuff
+
+These are some other apps I install whenever I have to set up a new Mac.
+
+### Homebrew
+
+The best package manager: <https://brew.sh/>
+
+### Pyenv
+
+```shell
+brew install pyenv
+brew install pyenv-virtualenv
+brew install pyenv-virtualenvwrapper
+```
+
+### Visual Studio Code
+
+My editor of choice: <https://code.visualstudio.com/>
+
+### Sublime Text
+
+My 2nd editor of choice, LOL: <https://www.sublimetext.com/>
 
 ### Amphetamine
 
 Amphetamine: <https://itunes.apple.com/ca/app/amphetamine/id937984704?mt=12>
 
-Previously I used Caffeine from the app store: <http://itunes.apple.com/us/app/caffeine/id411246225>
-but that appears to now be deprecated
+### LolCat
 
-### Calendar in menubar
+```shell
+sudo gem install lolcat
+```
 
-I've moved through various solutions for this, most recently Calendar 2: <https://qbix.com/calendar>
-(pick Calendar 2 once you get to the app store, should be free)
+### Shpotify
 
-<https://www.mowglii.com/itsycal/> is an alternative.
+Command line interface for controlling Spotify:
 
-Previously used MenuCalendarClock for iCal (<http://download.cnet.com/MenuCalendarClock-for-iCal/3000-2124_4-18953.html>)
-but this appears to be abandonware now
+```shell
+brew install shpotify
+```
 
-Some settings for it:
+### ItsyCal
 
-- Custom clock format: %b %d %1I:%M:%S %p
-- Under display -> Advanced, make sure "Hide Dock Icon" is selected
+Itsycal: <https://www.mowglii.com/itsycal/>
 
 ### CPULed
 
-Install CPULED from the app store: <https://itunes.apple.com/ca/app/cpu-led/id448189857?mt=12>
-
-### MacVim
-
-<https://code.google.com/p/macvim/>
-
-### GitX (L)
-
-<http://gitx.laullon.com/>
-
-### Hex Fiend
-
-<http://ridiculousfish.com/hexfiend/>
+<https://itunes.apple.com/ca/app/cpu-led/id448189857?mt=12>
 
 ### Spectacle
 
 <http://spectacleapp.com/>
 
-### Fluid
+### Activity Timer
 
-<http://fluidapp.com/>
+<https://apps.apple.com/us/app/activity-timer/id808647808>
 
-### Truecrypt
+### KeePassX
 
-This ones complicated now.  Get the DMG from Gibson Research Corp:
+<https://www.keepassx.org/>
 
-<https://www.grc.com/misc/truecrypt/truecrypt.htm>
-
-Now, if you're on Yosemite or later, you'll find that the installer borks.
-To fix:
-
-- Open the .dmg
-- You’ll find the `.mpkg`.  Right-click and “Show Package Contents”
-- Open Contents Dir
-- Open Packages Dir
-- Install each of the 4 packages in this order:
-  - OSXFUSECore.pkg
-  - OSXFUSEMacFUSE.pkg
-  - MacFUSE.pkg
-  - TrueCrypt.pkg
-
-It is possible MacFUSE.pkg will install the two before it, but we ran each to
-play it safe
-
-Source (<https://lazymind.me/2014/10/install-truecrypt-on-mac-osx-yosemite-10-10/>)
+There's definitely other things I install, but that's a good start.
 
 ## Other Examples of This
 
