@@ -51,6 +51,9 @@ Having said that, I've largely given up on this as I've found that importing
 settings from this folder often breaks in weird ways.  If someone has a good
 way for exporting iTerm settings, please let me know.
 
+In the meantime, I blogged about my iterm setup:
+<https://www.codependentcodr.com/iterm2-setup.html#iterm2-setup>
+
 ## Other Setup Stuff
 
 These are some other apps I install whenever I have to set up a new Mac.
@@ -58,6 +61,20 @@ These are some other apps I install whenever I have to set up a new Mac.
 ### Homebrew
 
 The best package manager: <https://brew.sh/>
+
+### Git
+
+Install via Homebrew as the version that comes with XCode is garbage:
+
+```shell
+brew install git
+```
+
+While at it, install git-extras:
+
+```shell
+brew install git-extras
+```
 
 ### Pyenv
 
@@ -74,6 +91,18 @@ My editor of choice: <https://code.visualstudio.com/>
 ### Sublime Text
 
 My 2nd editor of choice, LOL: <https://www.sublimetext.com/>
+
+As well, I add the following keymappings:
+
+```javascript
+[
+  { "keys": ["super+shift+k"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Delete Line.sublime-macro"} },
+  { "keys": ["alt+up"], "command": "swap_line_up" },
+  { "keys": ["alt+down"], "command": "swap_line_down" },
+  { "keys": ["alt+shift+up"], "command": "duplicate_line" },
+  { "keys": ["alt+shift+down"], "command": "duplicate_line" }
+]
+```
 
 ### Amphetamine
 
@@ -113,7 +142,41 @@ Itsycal: <https://www.mowglii.com/itsycal/>
 
 <https://www.keepassx.org/>
 
+### Pipx
+
+```shell
+brew install pipx
+pipx ensurepath
+```
+
+### Misc Global Python Commands
+
+All installed with Pipx:
+
+```shell
+pipx install black
+pipx install pylint
+pipx install Pygments
+```
+
 There's definitely other things I install, but that's a good start.
+
+## Misc OSX Config Stuff
+
+Maybe some of this could be automated/scripted?
+
+### Show Hidden Files
+
+Show hidden files, in terminal:
+
+```shell
+defaults write com.apple.Finder AppleShowAllFiles true
+killall Finder
+```
+
+### Disable The Touchbar
+
+Since it's horrible: <https://osxdaily.com/2018/08/30/disable-touch-bar-macbook-pro/>
 
 ## Other Examples of This
 
