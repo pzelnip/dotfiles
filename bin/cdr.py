@@ -45,18 +45,17 @@ def main():
     searchterm = sys.argv[1]
     paths = [p for p in BASE_PATHS if p.exists()]
     mappings = {f.name: f for p in paths for f in p.iterdir() if f.is_dir()}
-    mappings.update({
-        path.name: path for path in FULL_PATHS
-    })
+    mappings.update({path.name: path for path in FULL_PATHS})
 
-    print(f"Searching for {searchterm} in the following directories:")
+    print(f'Searching for "{searchterm}" in the following directories:\n')
     for path in mappings.values():
         print(path)
 
+    print()
     for name, path in mappings.items():
-        if searchterm in name:
+        if searchterm.lower() in name.lower():
             cmd = f"code {path}"
-            print(f"Executing {cmd}")
+            print(f'Executing "{cmd}"')
             os.system(cmd)
             return 0
     print("no match")
