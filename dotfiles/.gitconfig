@@ -1,18 +1,18 @@
 [user]
-	name = Adam Parkin
-	email = pzelnip@gmail.com
+    name = Adam Parkin
+    email = pzelnip@gmail.com
 [color]
-	diff = auto
-	status = auto
-	branch = auto
-	interactive = auto
+    diff = auto
+    status = auto
+    branch = auto
+    interactive = auto
 [diff]
-	renames = copies
+    renames = copies
 
 [core]
-	editor = vim
-	pager = less -r
-	excludesfile = /Users/aparkin/.gitignore_global
+    editor = vim
+    pager = less -r
+    excludesfile = /Users/aparkin/.gitignore_global
 
 [alias]
     # view a simplified log
@@ -23,7 +23,7 @@
 
     accept-theirs = "!f() { files=\"$@\"; [ -z $files ] && files='.'; git checkout --theirs -- $files; git add -u $files; }; f"
 
-	co = checkout
+    co = checkout
 
     b = branch
     s = status
@@ -73,10 +73,15 @@
     plopclean = !sh -c 'git plop && git cleanbranches'
 
 [github]
-	user = pzelnip
+    user = pzelnip
 
 [fetch]
     prune = true
 
 [pull]
-	rebase = false
+    rebase = false
+
+# use iTerms imgcat for image diffing.  See
+# https://til.hashrocket.com/posts/tyz3s673co-show-images-on-git-diff
+[diff "image"]
+    textconv = imgcat
