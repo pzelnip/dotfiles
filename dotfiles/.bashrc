@@ -35,8 +35,6 @@ alias rd='rmdir'
 alias bashrc='\vim ~/.bashrc && time source ~/.bashrc'
 alias dusort='du -d 1 -h | sortdu.pl'
 
-alias gitk='gitk --all'
-
 alias dos2unix="perl -pe 's/\r\n|\n|\r/\n/g'"
 
 alias kill_stopped_docker_containers='docker ps -aq --no-trunc | xargs docker rm'
@@ -46,7 +44,7 @@ alias shell_into_first_docker_container='docker exec -it $(docker ps | sed -n 2p
 # inspired by https://stackoverflow.com/a/68390/808804
 alias topcommands="history | tr -s ' ' | cut -d ' ' -f 5 | sort | uniq -c | sort -nr | head"
 
-alias subl="/Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl"
+alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -73,8 +71,8 @@ function parse_git_branch {
  [[ $branch ]] && echo "[$branch$(parse_git_dirty)]"
 }
 
+# Show asterisk in git status in prompt if uncommitted changes
 export GIT_PS1_SHOWDIRTYSTATE=1
-
 
 function promptcol {
 # return red if root, white otherwise
@@ -134,7 +132,6 @@ source /usr/local/bin/virtualenvwrapper.sh
 
 source ~/bin/git-completion.bash
 
-export PATH=/usr/local/bin:$PATH:/Applications/Xcode.app/Contents/Developer/usr/bin
 export PATH=$PATH:~/bin
 
 alias md5sum='md5 -r'
@@ -178,7 +175,6 @@ fi
 
 # docker tab completion, on OSX simlink to the completion scripts with:
 #
-#
 # find /Applications/Docker.app \
 # -type f -name "*.bash-completion" \
 # -exec ln -s "{}" "$(brew --prefix)/etc/bash_completion.d/" \;
@@ -188,13 +184,7 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
 . $(brew --prefix)/etc/bash_completion
 fi
 
-# setting up Go via homebrew
-export GOPATH=$HOME/golang
-export GOROOT=/usr/local/opt/go/libexec
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:$GOROOT/bin
-
-#ssh host completion, see http://www.commandlinefu.com/commands/view/8562/enable-tab-completion-for-known-ssh-hosts
+# ssh host completion, see http://www.commandlinefu.com/commands/view/8562/enable-tab-completion-for-known-ssh-hosts
 complete -W "$(echo `cat ~/.ssh/known_hosts | cut -f 1 -d ' ' | sed -e s/,.*//g | uniq | grep -v "\["`;)" ssh
 
 # bash: Place this in .bashrc.
@@ -207,8 +197,10 @@ function iterm2_print_user_vars() {
 # Uses java cowsay, get at https://github.com/ricksbrown/cowsay
 # install fortune via brew
 # and lolcat is just, well, something you should always have
-java -jar ~/bin/cowsay.jar -f `java -jar ~/bin/cowsay.jar -l   | awk 'BEGIN { srand() } int(rand() * NR) == 0 { x = $0 } END { print x }'` "`fortune`" | lolcat
-
-alias spot="spotify"
+java -jar ~/bin/cowsay.jar -f `java -jar ~/bin/cowsay.jar -l | awk 'BEGIN { srand() } int(rand() * NR) == 0 { x = $0 } END { print x }'` "`fortune`" | lolcat
 
 function joke { curl -s -H "Accept: application/json" https://icanhazdadjoke.com/ | jq ".joke"; }
+
+export PATH="$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
