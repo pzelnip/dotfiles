@@ -1,5 +1,10 @@
 #!/bin/sh
 
+# This script requires two dependencies be installed:
+
+# gem install lolcat
+# pip install Pygments
+
 if [ $# -eq 0 ]; then
     lolcat
 else
