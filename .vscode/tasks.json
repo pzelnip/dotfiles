@@ -4,9 +4,9 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "echo",
+            "label": "Symbolic link current file to ~/bin",
             "type": "shell",
-            "command": "echo Hello"
+            "command": "./ln_file_in_home_bin.sh ${fileBasename}"
         }
     ]
 }
