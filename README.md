@@ -138,9 +138,12 @@ Itsycal: <https://www.mowglii.com/itsycal/>
 
 <https://apps.apple.com/us/app/activity-timer/id808647808>
 
-### KeePassX
+### KeePassXC
 
-<https://www.keepassx.org/>
+<https://keepassxc.org/>
+
+Though I have been using a very old version
+([2.2.2](https://github.com/keepassxreboot/keepassxc/releases/tag/2.2.0))
 
 ### Pipx
 
