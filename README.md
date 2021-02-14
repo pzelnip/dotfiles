@@ -154,12 +154,10 @@ pipx ensurepath
 
 ### Misc Global Python Commands
 
-All installed with Pipx:
+All installed with Pipx.  Use the supplied `install_py_pkgs.sh` script.
 
 ```shell
-pipx install black
-pipx install pylint
-pipx install Pygments
+./install_py_pkgs.sh
 ```
 
 There's definitely other things I install, but that's a good start.
