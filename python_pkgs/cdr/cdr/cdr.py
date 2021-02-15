@@ -22,19 +22,86 @@ and the first directory in:
 ~/dotfiles
 /Volumes/CaseSensitive/sandbox/*
 
-that contains "foo" will get opened up in VS Code.
+that contains "foo" will get opened up in VS Code.  Directories to search are
+specified in ~/.cdr.json, which is a JSON file containing two keys: basepaths
+and fullpaths.  "basepaths" will be expanded to search all 1st-level subdirectories
+and fullpaths are searched as-is.  So the above 3 paths would be specified as:
+
+{
+    "basepaths": [
+        "~/temp/sandbox",
+        "/Volumes/CaseSensitive/sandbox"
+    ],
+    "fullpaths": [
+        "~/dotfiles"
+    ]
+}
+
+~ will be expanded to the full user's home directory (Pathlib's expanduser() is
+called on the path string)
 """
 
-import sys
+import json
 import os
+import sys
+from collections import namedtuple
 from pathlib import Path
 
+from bullet import Bullet
 
-# The base directories to search for subdirectories in
-BASE_PATHS = [Path.home() / "temp" / "sandbox", Path("/Volumes/CaseSensitive/sandbox")]
+Match = namedtuple("Match", "name path".split())
 
-# Raw full paths to add to the search list (ie not subdirectories)
-FULL_PATHS = [Path.home() / "dotfiles"]
+CONFIG_FILE_NAME = "~/.cdr.json"
+
+
+def get_paths():
+    def expand_paths(pathnames):
+        # expand home directory & remove dupes
+        pathnames = {Path(path).expanduser() for path in pathnames}
+        # filter out non-existant paths
+        return [path for path in pathnames if path.exists() and path.is_dir()]
+
+    configpath = Path(CONFIG_FILE_NAME).expanduser()
+    if not configpath.exists():
+        raise RuntimeError(f"{configpath} does not exist")
+
+    with open(configpath, "r") as fobj:
+        data = json.loads(fobj.read())
+    data["basepaths"] = expand_paths(data["basepaths"])
+    data["fullpaths"] = expand_paths(data["fullpaths"])
+
+    result = [Match(f.name, f) for p in data["basepaths"] for f in p.iterdir()] + [
+        Match(path.name, path) for path in data["fullpaths"]
+    ]
+
+    return result
+
+
+def is_match(searchterm, match):
+    """The search logic.
+
+    Right now this is brain-dead simple, but extracted this fn
+    so that it might be made more sophisticated in the future.
+    """
+    return searchterm.lower() in match.name.lower()
+
+
+def get_match(searchterm, all_paths):
+    match = None
+    matches = [match for match in all_paths if is_match(searchterm, match)]
+    if len(matches) > 1:
+        result = Bullet(
+            prompt="Multiple matches, please select:",
+            margin=2,
+            pad_right=5,
+            choices=[match.name for match in matches],
+            bullet="★",
+            return_index=True,
+        ).launch()
+        match = matches[result[1]]
+    elif len(matches) == 1:
+        match = matches[0]
+    return match
 
 
 def main():
@@ -43,23 +110,22 @@ def main():
         return 1
 
     searchterm = sys.argv[1]
-    paths = [p for p in BASE_PATHS if p.exists()]
-    mappings = {f.name: f for p in paths for f in p.iterdir() if f.is_dir()}
-    mappings.update({path.name: path for path in FULL_PATHS})
+    all_paths = get_paths()
 
     print(f'Searching for "{searchterm}" in the following directories:\n')
-    for path in mappings.values():
-        print(path)
-
+    for match in all_paths:
+        print(match.path)
     print()
-    for name, path in mappings.items():
-        if searchterm.lower() in name.lower():
-            cmd = f"code {path}"
-            print(f'Executing "{cmd}"')
-            os.system(cmd)
-            return 0
-    print("no match")
-    return 1
+
+    match = get_match(searchterm, all_paths)
+    if match:
+        cmd = f"code {match.path}"
+        print(f'Executing "{cmd}"')
+        os.system(cmd)
+        return 0
+    else:
+        print("no match")
+        return 1
 
 
 if __name__ == "__main__":
