@@ -3,7 +3,7 @@ import setuptools
 
 setuptools.setup(
     name="cdr",
-    version="0.0.1",
+    version="0.0.2",
     author="Adam Parkin",
     author_email="pzelnip@gmail.com",
     description="Script for opening projects in VS Code",
@@ -15,11 +15,8 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
+    install_requires="bullet".split(),
     package_dir={"cdr": "cdr"},
-    entry_points={
-        "console_scripts": [
-            "cdr=cdr.cdr:main"
-        ],
-    },
+    entry_points={"console_scripts": ["cdr=cdr.cdr:main"],},
     python_requires=">=3.5",
 )

@@ -22,19 +22,49 @@ and the first directory in:
 ~/dotfiles
 /Volumes/CaseSensitive/sandbox/*
 
-that contains "foo" will get opened up in VS Code.
+that contains "foo" will get opened up in VS Code.  Directories to search are
+specified in ~/.cdr.json, which is a JSON file containing two keys: basepaths
+and fullpaths.  "basepaths" will be expanded to search all 1st-level subdirectories
+and fullpaths are searched as-is.  So the above 3 paths would be specified as:
+
+{
+    "basepaths": [
+        "~/temp/sandbox",
+        "/Volumes/CaseSensitive/sandbox"
+    ],
+    "fullpaths": [
+        "~/dotfiles"
+    ]
+}
+
+~ will be expanded to the full user's home directory (Pathlib's expanduser() is
+called on the path string)
 """
 
-import sys
+import json
 import os
+import sys
 from pathlib import Path
 
+from bullet import Bullet
 
-# The base directories to search for subdirectories in
-BASE_PATHS = [Path.home() / "temp" / "sandbox", Path("/Volumes/CaseSensitive/sandbox")]
 
-# Raw full paths to add to the search list (ie not subdirectories)
-FULL_PATHS = [Path.home() / "dotfiles"]
+def get_paths():
+    def expand_paths(pathnames):
+        # expand home directory & remove dupes
+        pathnames = {Path(path).expanduser() for path in pathnames}
+        # filter out non-existant paths
+        return [path for path in pathnames if path.exists() and path.is_dir()]
+
+    configpath = Path("~/.cdr.json").expanduser()
+    if not configpath.exists():
+        raise ValueError(f"{configpath} does not exist")
+
+    with open(configpath, "r") as fobj:
+        data = json.loads(fobj.read())
+    data["basepaths"] = expand_paths(data["basepaths"])
+    data["fullpaths"] = expand_paths(data["fullpaths"])
+    return data
 
 
 def main():
@@ -42,24 +72,44 @@ def main():
         print(f"Usage: {sys.argv[0]} <searchterm>")
         return 1
 
+    config = get_paths()
     searchterm = sys.argv[1]
-    paths = [p for p in BASE_PATHS if p.exists()]
-    mappings = {f.name: f for p in paths for f in p.iterdir() if f.is_dir()}
-    mappings.update({path.name: path for path in FULL_PATHS})
+    mappings = {f.name: f for p in config["basepaths"] for f in p.iterdir()}
+    mappings.update({path.name: path for path in config["fullpaths"]})
 
     print(f'Searching for "{searchterm}" in the following directories:\n')
     for path in mappings.values():
         print(path)
 
     print()
-    for name, path in mappings.items():
-        if searchterm.lower() in name.lower():
-            cmd = f"code {path}"
-            print(f'Executing "{cmd}"')
-            os.system(cmd)
-            return 0
-    print("no match")
-    return 1
+    matches = [
+        (name, path)
+        for name, path in mappings.items()
+        if searchterm.lower() in name.lower()
+    ]
+
+    match = ""
+    if len(matches) > 1:
+        result = Bullet(
+            prompt="Multiple matches, please select:",
+            margin=2,
+            pad_right=5,
+            choices=[match[0] for match in matches],
+            bullet="★",
+            return_index=True,
+        ).launch()
+        match = matches[result[1]][1]
+    elif len(matches) == 1:
+        match = matches[0][1]
+
+    if match:
+        cmd = f"code {match}"
+        print(f'Executing "{cmd}"')
+        os.system(cmd)
+        return 0
+    else:
+        print("no match")
+        return 1
 
 
 if __name__ == "__main__":
