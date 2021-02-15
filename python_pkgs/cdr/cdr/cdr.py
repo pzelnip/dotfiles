@@ -51,6 +51,8 @@ from bullet import Bullet
 
 Match = namedtuple("Match", "name path".split())
 
+CONFIG_FILE_NAME = "~/.cdr.json"
+
 
 def get_paths():
     def expand_paths(pathnames):
@@ -59,39 +61,34 @@ def get_paths():
         # filter out non-existant paths
         return [path for path in pathnames if path.exists() and path.is_dir()]
 
-    configpath = Path("~/.cdr.json").expanduser()
+    configpath = Path(CONFIG_FILE_NAME).expanduser()
     if not configpath.exists():
-        raise ValueError(f"{configpath} does not exist")
+        raise RuntimeError(f"{configpath} does not exist")
 
     with open(configpath, "r") as fobj:
         data = json.loads(fobj.read())
     data["basepaths"] = expand_paths(data["basepaths"])
     data["fullpaths"] = expand_paths(data["fullpaths"])
-    return data
 
-
-def main():
-    if len(sys.argv) <= 1:
-        print(f"Usage: {sys.argv[0]} <searchterm>")
-        return 1
-
-    searchterm = sys.argv[1]
-    config = get_paths()
-    mappings = {f.name: f for p in config["basepaths"] for f in p.iterdir()}
-    mappings.update({path.name: path for path in config["fullpaths"]})
-
-    print(f'Searching for "{searchterm}" in the following directories:\n')
-    for path in mappings.values():
-        print(path)
-
-    print()
-    matches = [
-        Match(name, path)
-        for name, path in mappings.items()
-        if searchterm.lower() in name.lower()
+    result = [Match(f.name, f) for p in data["basepaths"] for f in p.iterdir()] + [
+        Match(path.name, path) for path in data["fullpaths"]
     ]
 
+    return result
+
+
+def is_match(searchterm, match):
+    """The search logic.
+
+    Right now this is brain-dead simple, but extracted this fn
+    so that it might be made more sophisticated in the future.
+    """
+    return searchterm.lower() in match.name.lower()
+
+
+def get_match(searchterm, all_paths):
     match = None
+    matches = [match for match in all_paths if is_match(searchterm, match)]
     if len(matches) > 1:
         result = Bullet(
             prompt="Multiple matches, please select:",
@@ -104,7 +101,23 @@ def main():
         match = matches[result[1]]
     elif len(matches) == 1:
         match = matches[0]
+    return match
 
+
+def main():
+    if len(sys.argv) <= 1:
+        print(f"Usage: {sys.argv[0]} <searchterm>")
+        return 1
+
+    searchterm = sys.argv[1]
+    all_paths = get_paths()
+
+    print(f'Searching for "{searchterm}" in the following directories:\n')
+    for match in all_paths:
+        print(match.path)
+    print()
+
+    match = get_match(searchterm, all_paths)
     if match:
         cmd = f"code {match.path}"
         print(f'Executing "{cmd}"')
