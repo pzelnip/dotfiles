@@ -70,7 +70,7 @@ def get_paths():
     data["basepaths"] = expand_paths(data["basepaths"])
     data["fullpaths"] = expand_paths(data["fullpaths"])
 
-    result = [Match(f.name, f) for p in data["basepaths"] for f in p.iterdir()] + [
+    result = [Match(f.name, f) for p in data["basepaths"] for f in p.iterdir() if f.is_dir()] + [
         Match(path.name, path) for path in data["fullpaths"]
     ]
 
