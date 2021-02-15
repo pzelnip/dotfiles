@@ -44,9 +44,12 @@ called on the path string)
 import json
 import os
 import sys
+from collections import namedtuple
 from pathlib import Path
 
 from bullet import Bullet
+
+Match = namedtuple("Match", "name path".split())
 
 
 def get_paths():
@@ -72,8 +75,8 @@ def main():
         print(f"Usage: {sys.argv[0]} <searchterm>")
         return 1
 
-    config = get_paths()
     searchterm = sys.argv[1]
+    config = get_paths()
     mappings = {f.name: f for p in config["basepaths"] for f in p.iterdir()}
     mappings.update({path.name: path for path in config["fullpaths"]})
 
@@ -83,27 +86,27 @@ def main():
 
     print()
     matches = [
-        (name, path)
+        Match(name, path)
         for name, path in mappings.items()
         if searchterm.lower() in name.lower()
     ]
 
-    match = ""
+    match = None
     if len(matches) > 1:
         result = Bullet(
             prompt="Multiple matches, please select:",
             margin=2,
             pad_right=5,
-            choices=[match[0] for match in matches],
+            choices=[match.name for match in matches],
             bullet="★",
             return_index=True,
         ).launch()
-        match = matches[result[1]][1]
+        match = matches[result[1]]
     elif len(matches) == 1:
-        match = matches[0][1]
+        match = matches[0]
 
     if match:
-        cmd = f"code {match}"
+        cmd = f"code {match.path}"
         print(f'Executing "{cmd}"')
         os.system(cmd)
         return 0
