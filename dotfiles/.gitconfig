@@ -85,3 +85,6 @@
 # https://til.hashrocket.com/posts/tyz3s673co-show-images-on-git-diff
 [diff "image"]
     textconv = imgcat
+
+[init]
+	defaultBranch = mainline
