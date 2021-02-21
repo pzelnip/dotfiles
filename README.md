@@ -187,3 +187,6 @@ others to look at for inspiration:
 <https://bitbucket.org/j/dotfiles/src>
 
 <https://github.com/garybernhardt/dotfiles>
+
+
+ALso do this, because macs suck: https://apple.stackexchange.com/a/99214/30472
