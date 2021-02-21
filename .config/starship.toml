@@ -1,0 +1,167 @@
+format = """
+$status \
+${custom.tztime} \
+${custom.uptime} \
+$username\
+$hostname\
+$shlvl\
+$kubernetes\
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$docker_context\
+$package\
+$cmake\
+$nodejs\
+$perl\
+$python \
+$ruby\
+$rust\
+$terraform\
+$vagrant\
+$nix_shell\
+$conda\
+$aws \
+$env_var\
+$cmd_duration\
+$line_break\
+$character"""
+
+# Don't print a new line at the start of the prompt
+add_newline = false
+
+[aws]
+format = '\[AWS: [$profile/($region)]($style)\]'
+symbol = ''
+style = 'bold white'
+
+[character]
+success_symbol = " [λ](grey)"
+error_symbol = " [λ](bold red)"
+
+[cmd_duration]
+min_time = 1000
+
+[directory]
+truncation_length = 100
+truncate_to_repo = false
+style = " yellow"
+format = "[:$path]($style)[$read_only]($read_only_style) "
+
+[git_branch]
+symbol = ""
+style = "bold white"
+format = '[\($symbol$branch\)]($style) '
+
+[git_status]
+# I don't care about untracked files or that there's a stash present.
+untracked = ""
+format = '([\[$conflicted$deleted$renamed$modified$staged$ahead_behind\]]($style) )'
+modified = '*'
+
+[python]
+format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\))]($style)'
+
+[status]
+disabled = false
+format = '[\[$status - $common_meaning\]](green)'
+
+[custom.tztime]
+command = 'date +"%a %b %d %Y %l:%M%p (%Z%z)"'
+when = "true"
+format = '[\[$symbol($output)\]](green)'
+
+[custom.uptime]
+command = "uptime.sh"
+when = "true"
+format = "[$symbol($output)](green)"
+
+[env_var]
+variable = "0"
+
+#### Disabled modules ####
+
+# add these back to format if you want them:
+# $time\
+# $hg_branch\
+# $dart\
+# $dotnet\
+# $elixir\
+# $elm\
+# $erlang\
+# $golang\
+# $helm\
+# $java\
+# $julia\
+# $kotlin\
+# $nim\
+# $ocaml\
+# $php\
+# $purescript\
+# $swift\
+# $zig\
+# $memory_usage\
+# $gcloud\
+# $openstack\
+# $crystal\
+# $lua\
+# $jobs\
+# $battery\
+[hg_branch]
+disabled = true
+[dart]
+disabled = true
+[dotnet]
+disabled = true
+[elixir]
+disabled = true
+[elm]
+disabled = true
+[erlang]
+disabled = true
+[golang]
+disabled = true
+[helm]
+disabled = true
+[java]
+disabled = true
+[julia]
+disabled = true
+[kotlin]
+disabled = true
+[nim]
+disabled = true
+[ocaml]
+disabled = true
+[php]
+disabled = true
+[purescript]
+disabled = true
+[swift]
+disabled = true
+[zig]
+disabled = true
+[memory_usage]
+disabled = true
+[gcloud]
+disabled = true
+[openstack]
+disabled = true
+[crystal]
+disabled = true
+[lua]
+disabled = true
+[jobs]
+disabled = true
+[battery]
+disabled = true
+
+# Until these get resolved, doing my own datetime with date:
+# https://github.com/starship/starship/discussions/2360#discussioncomment-391911
+# https://github.com/chronotope/chrono/issues/288
+[time]
+disabled = true
+# format = '[\[$time\]](green) '
+# time_format = "%a %b %d %Y %l:%M%p (%z)"
