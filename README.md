@@ -152,6 +152,16 @@ brew install pipx
 pipx ensurepath
 ```
 
+### Starship
+
+For that nice prompt goodness: <https://starship.rs/>
+
+```shell
+brew install starship
+```
+
+Then symlink (or copy) `.config/starship.toml` to `~/.config`.
+
 ### Misc Global Python Commands
 
 All installed with Pipx.  Use the supplied `install_py_pkgs.sh` script.
