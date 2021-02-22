@@ -14,6 +14,10 @@ echo "-------------------"
 echo "Finder settings...."
 echo "- Show hidden files"
 defaults write com.apple.Finder AppleShowAllFiles true
+
+# for the hidden files everywhere:
+# https://apple.stackexchange.com/questions/99213/is-it-possible-to-always-show-hidden-dotfiles-in-open-save-dialogs/99214#99214
+defaults write -g AppleShowAllFiles -bool true
 killall Finder
 echo "Finder settings done"
 
