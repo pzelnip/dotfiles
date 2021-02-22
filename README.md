@@ -172,8 +172,12 @@ Show hidden files, in terminal:
 
 ```shell
 defaults write com.apple.Finder AppleShowAllFiles true
+defaults write -g AppleShowAllFiles -bool true
+
 killall Finder
 ```
+
+Source: <https://apple.stackexchange.com/questions/99213/is-it-possible-to-always-show-hidden-dotfiles-in-open-save-dialogs/99214#99214>
 
 ### Disable The Touchbar
 
@@ -187,6 +191,3 @@ others to look at for inspiration:
 <https://bitbucket.org/j/dotfiles/src>
 
 <https://github.com/garybernhardt/dotfiles>
-
-
-ALso do this, because macs suck: https://apple.stackexchange.com/a/99214/30472
