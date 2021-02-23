@@ -58,7 +58,7 @@ format = '[\($symbol$branch\)]($style) '
 [git_status]
 # I don't care about untracked files or that there's a stash present.
 untracked = ""
-format = '([\[$conflicted$deleted$renamed$modified$staged$ahead_behind\]]($style) )'
+format = '([\[$conflicted$deleted$renamed$modified$staged$behind\]]($style) )'
 modified = '*'
 
 [python]
