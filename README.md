@@ -76,6 +76,11 @@ While at it, install git-extras:
 brew install git-extras
 ```
 
+And shell completion:
+
+```shell
+brew install bash-completion
+
 ### Pyenv
 
 ```shell

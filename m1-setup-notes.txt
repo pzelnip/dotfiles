@@ -1,5 +1,13 @@
 Random notes from setting up my M1 MBA.
 
+Installed slack via app store
+
+Installed spectacle, opened, closed, then copied my JSON config over, & re-opened.
+
+Installed keepassx (latest version, which is M1 ready)
+
+Installed iterm2 (m1 ready).  Immported my config, which is a weird way of doing it: https://gitlab.com/gnachman/iterm2/-/issues/8029
+
 brew install git
 brew install git-extras
 brew install bash-completion
