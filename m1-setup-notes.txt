@@ -1,0 +1,26 @@
+Random notes from setting up my M1 MBA.
+
+brew install git
+brew install git-extras
+brew install bash-completion
+
+brew install python3
+
+python3 -m pip install virtualenv
+python3 -m pip install virtualenvwrapper
+
+edited bashrc to have path:
+
+export PATH=/opt/homebrew/opt/python@3.9/libexec/bin:$PATH
+
+following advice from: https://stackoverflow.com/a/49711594/808804
+
+brew install pipx
+
+pipx install black
+
+(added path for pipx commands to my PATH in .bashrc)
+
+brew install starship
+
+added to my bashrc: eval "$(starship init bash)"

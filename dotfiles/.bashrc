@@ -92,8 +92,6 @@ export AWS_DEFAULT_REGION='ca-central-1'
 export WORKON_HOME=~/.envs
 source /usr/local/bin/virtualenvwrapper.sh
 
-source ~/bin/git-completion.bash
-
 export PATH=$PATH:~/bin
 
 alias md5sum='md5 -r'
@@ -166,3 +164,5 @@ function joke { curl -s -H "Accept: application/json" https://icanhazdadjoke.com
 export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+
+eval "$(starship init bash)"
