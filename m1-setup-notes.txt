@@ -32,3 +32,7 @@ pipx install black
 brew install starship
 
 added to my bashrc: eval "$(starship init bash)"
+
+brew install ag
+
+Found this site: https://doesitarm.com/kind/homebrew/
