@@ -1,0 +1,13 @@
+{
+    "basepaths": [
+        "~/temp/sandbox",
+        "/Volumes/Elements/home_dir/temp/sandbox"
+    ],
+    "fullpaths": [
+        "~/dotfiles"
+    ],
+    "editor": {
+        "command": "code",
+        "arguments": "--verbose"
+    }
+}
