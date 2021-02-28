@@ -47,11 +47,9 @@ Make sure you have a decent version of Python and pip installed.
 I use [iTerm2](http://www.iterm2.com/#/section/home) as my terminal of choice,
 and my config can be found in `iterm/`
 
-Having said that, I've largely given up on this as I've found that importing
-settings from this folder often breaks in weird ways.  If someone has a good
-way for exporting iTerm settings, please let me know.
+This can be restored by following: <https://gitlab.com/gnachman/iterm2/-/issues/8029>
 
-In the meantime, I blogged about my iterm setup:
+I've also blogged about my iterm setup:
 <https://www.codependentcodr.com/iterm2-setup.html#iterm2-setup>
 
 ## Other Setup Stuff
@@ -64,17 +62,7 @@ The best package manager: <https://brew.sh/>
 
 ### Git
 
-Install via Homebrew as the version that comes with XCode is garbage:
-
-```shell
-brew install git
-```
-
-While at it, install git-extras:
-
-```shell
-brew install git-extras
-```
+Install via `install_brew_pkgs.sh`
 
 And shell completion:
 
@@ -83,11 +71,7 @@ brew install bash-completion
 
 ### Pyenv
 
-```shell
-brew install pyenv
-brew install pyenv-virtualenv
-brew install pyenv-virtualenvwrapper
-```
+Install via `install_brew_pkgs.sh`
 
 ### Visual Studio Code
 
@@ -119,14 +103,6 @@ Amphetamine: <https://itunes.apple.com/ca/app/amphetamine/id937984704?mt=12>
 sudo gem install lolcat
 ```
 
-### Shpotify
-
-Command line interface for controlling Spotify:
-
-```shell
-brew install shpotify
-```
-
 ### ItsyCal
 
 Itsycal: <https://www.mowglii.com/itsycal/>
@@ -148,24 +124,21 @@ Itsycal: <https://www.mowglii.com/itsycal/>
 <https://keepassxc.org/>
 
 Though I have been using a very old version
-([2.2.2](https://github.com/keepassxreboot/keepassxc/releases/tag/2.2.0))
+([2.2.2](https://github.com/keepassxreboot/keepassxc/releases/tag/2.2.0)).
 
 ### Pipx
 
-```shell
-brew install pipx
-pipx ensurepath
-```
+Install via `install_brew_pkgs.sh`
 
 ### Starship
 
 For that nice prompt goodness: <https://starship.rs/>
 
-```shell
-brew install starship
-```
+Install via `install_brew_pkgs.sh`
 
 Then symlink (or copy) `.config/starship.toml` to `~/.config`.
+
+I've also blogged about my Starship setup: <https://www.codependentcodr.com/using-starship-for-terminal-prompt-goodness.html>
 
 ### Misc Global Python Commands
 
