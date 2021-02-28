@@ -7,7 +7,6 @@ brew install bash-completion
 brew install starship
 brew install python3
 brew install shpotify
-brew install autojump
 brew install watch
 brew install the_silver_searcher
 brew install htop
