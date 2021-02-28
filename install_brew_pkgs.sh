@@ -8,6 +8,10 @@ brew install starship
 brew install python3
 brew install shpotify
 brew install autojump
+brew install watch
+brew install the_silver_searcher
+brew install htop
+brew install cloc
 
 # pipx is a special case, I want it installed before pyenv, and
 # I only want to run ensurepath if it's being installed now
