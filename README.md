@@ -64,11 +64,6 @@ The best package manager: <https://brew.sh/>
 
 Install via `install_brew_pkgs.sh`
 
-And shell completion:
-
-```shell
-brew install bash-completion
-
 ### Pyenv
 
 Install via `install_brew_pkgs.sh`
