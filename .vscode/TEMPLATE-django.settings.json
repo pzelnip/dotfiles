@@ -3,7 +3,8 @@
     "editor.formatOnPaste": false,
     "python.linting.pylintArgs": [
         "--load-plugins",
-        "pylint_django"
+        "pylint_django",
+        "--django-settings-module=dotted.path.to.your.settings"
     ],
     "editor.formatOnSave": true,
 }
