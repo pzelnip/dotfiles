@@ -13,4 +13,5 @@
             "line_length": 80
         }
     },
+    "python.pythonPath": "/Users/adamparkin/.envs/dotfiles/bin/python",
 }
