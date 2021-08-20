@@ -15,6 +15,9 @@
     excludesfile = /Users/aparkin/.gitignore_global
 
 [alias]
+    # interactive fixup, see: https://jordanelver.co.uk/blog/2020/06/04/fixing-commits-with-git-commit-fixup-and-git-rebase-autosquash/
+    ifixup = "!git log -n 50 --pretty=format:'%h %s' --no-merges | fzf | cut -c -7 | xargs -o git commit --fixup"
+
     # view a simplified log
     headlines = log --oneline --no-merges
 
