@@ -155,6 +155,12 @@ function iterm2_print_user_vars() {
   iterm2_set_user_var pythonVersion $(python -c "import platform; print(platform.python_version())");
 }
 
+function makevenv() {
+    python -m venv .venv
+    source .venv/bin/activate
+    python -m pip install --upgrade pip pylint
+}
+
 # cowsay on new prompt, inspired by https://schier.co/blog/2016/08/09/add-colorful-cows-to-your-terminal/
 # Uses java cowsay, get at https://github.com/ricksbrown/cowsay
 # install fortune via brew
