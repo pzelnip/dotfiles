@@ -11,6 +11,7 @@ brew install watch
 brew install the_silver_searcher
 brew install htop
 brew install cloc
+brew install autoenv
 
 # pipx is a special case, I want it installed before pyenv, and
 # I only want to run ensurepath if it's being installed now
