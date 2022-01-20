@@ -19,7 +19,7 @@
     ifixup = "!git log -n 50 --pretty=format:'%h %s' --no-merges | fzf | cut -c -7 | xargs -o git commit --fixup"
 
     # interactive add
-    iadd = "!( git show --pretty=\"format:\" --name-only ; git ls-files . --exclude-standard --others ) | fzf | xargs -o git add"
+    iadd = "!( git ls-files --other --modified --exclude-standard ) | fzf | xargs -o git add"
 
     # view a simplified log
     headlines = log --oneline --no-merges
