@@ -1,6 +1,7 @@
 [user]
     name = Adam Parkin
     email = pzelnip@gmail.com
+
 [color]
     diff = auto
     status = auto
@@ -19,45 +20,25 @@
     ifixup = "!git log -n 50 --pretty=format:'%h %s' --no-merges | fzf | cut -c -7 | xargs -o git commit --fixup"
 
     # interactive add
-    iadd = "!( git ls-files --other --modified --exclude-standard ) | fzf | xargs -o git add"
+    iadd = "!(  git ls-files --other --modified --exclude-standard ) | fzf | xargs -o git add"
 
     # view a simplified log
     headlines = log --oneline --no-merges
 
-    # delete local and remote copies of a branch -- USE WITH CARE
-    nullify = !sh -c 'git push $0 :$1 && git branch -d $1'
-
-    accept-theirs = "!f() { files=\"$@\"; [ -z $files ] && files='.'; git checkout --theirs -- $files; git add -u $files; }; f"
-
-    co = checkout
-
+	co = checkout
     b = branch
     s = status
     d = diff
-    dt = difftool
     sd = !git status && git --no-pager diff
-
-    # edit all conflicted files in vim, taken from https://coderwall.com/p/j7kxsa
-    edit-conflicts = "!f() { git status -s | grep ^UU | awk '{print $2}' ; }; mvim `f`"
 
     # cause git to forget or remember a tracked file, allowing changes to skip version control
     # see: http://stackoverflow.com/questions/13630849/git-difference-between-assume-unchanged-and-skip-worktree/13631525#13631525
     amnesia = !sh -c 'git update-index --skip-worktree $0'
     recall = !sh -c 'git update-index --no-skip-worktree $0'
-    forgetfulness = !git ls-files -v | grep ^S
 
-    # clean up merged branches except current branch, master, or dev, or production
-    cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|dev|production' | xargs -n 1 git branch -d"
-
-    bp = "!. ~/.githelpers && pretty_git_branch"
-    bs = "!. ~/.githelpers && pretty_git_branch_sorted"
-
-    head = !git r -1
-    h = !git head
     hp = "!. ~/.githelpers && show_git_head"
-    r = !GIT_NO_PAGER=1 git l -30
-    ra = !git r --all
     l = "!. ~/.githelpers && pretty_git_log"
+    r = !GIT_NO_PAGER=1 git l -30
     la = !git l --all
 
     fp2 = !sh -c 'git remote | xargs -n 1 git fetch -v --prune $1'
@@ -65,18 +46,17 @@
 
     forcepush = push --force-with-lease
 
-    cleanbranches = !sh -c 'git remote | xargs -n 1 git fetch -v --prune $1 && git branch --merged | egrep -v master | egrep -v develop | egrep -v production | egrep -v mainline | xargs git branch -d'
-    psom = push origin master
-    plom = pull origin master
+    cleanbranches = !sh -c 'git remote | xargs -n 1 git fetch -v --prune $1 && git branch --merged | egrep -v master | egrep -v mainline | egrep -v main | xargs git branch -d'
+    ploms = pull origin master
+    plom = pull origin main
     ploml = pull origin mainline
-    plop = pull origin production
-    plod = syncdev
-    stashdropbecarefulbecausethisisdangerous = !sh -c 'git stash && git stash drop'
+    plomsclean = !sh -c 'git ploms && git cleanbranches'
     plomclean = !sh -c 'git plom && git cleanbranches'
     plomlclean = !sh -c 'git ploml && git cleanbranches'
 
-    plodclean = !sh -c 'git plod && git cleanbranches'
-    plopclean = !sh -c 'git plop && git cleanbranches'
+    cleangonebranches = "!(git branch -vv | grep ': gone]' |  grep -v '*' | awk '{ print $1; }' | xargs git branch -D)"
+
+    stashdropbecarefulbecausethisisdangerous = !sh -c 'git stash && git stash drop'
 
 [github]
     user = pzelnip
@@ -93,4 +73,4 @@
     textconv = imgcat
 
 [init]
-	defaultBranch = mainline
+	defaultBranch = main
