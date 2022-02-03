@@ -25,7 +25,7 @@
     # view a simplified log
     headlines = log --oneline --no-merges
 
-	co = checkout
+    co = checkout
     b = branch
     s = status
     d = diff
@@ -73,4 +73,4 @@
     textconv = imgcat
 
 [init]
-	defaultBranch = main
+    defaultBranch = main
