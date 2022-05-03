@@ -76,7 +76,7 @@ My editor of choice: <https://code.visualstudio.com/>
 
 My 2nd editor of choice, LOL: <https://www.sublimetext.com/>
 
-As well, I add the following keymappings:
+As well, I add the following keymappings (open "keybindings" in the command pallette):
 
 ```javascript
 [
@@ -106,9 +106,11 @@ Itsycal: <https://www.mowglii.com/itsycal/>
 
 <https://itunes.apple.com/ca/app/cpu-led/id448189857?mt=12>
 
-### Spectacle
+### Rectangle
 
-<http://spectacleapp.com/>
+<https://rectangleapp.com/>
+
+Settings are in `apple/Rectangle/RectangleConfig.json`
 
 ### Activity Timer
 

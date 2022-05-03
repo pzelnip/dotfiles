@@ -147,7 +147,7 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
 fi
 
 # ssh host completion, see http://www.commandlinefu.com/commands/view/8562/enable-tab-completion-for-known-ssh-hosts
-complete -W "$(echo `cat ~/.ssh/known_hosts | cut -f 1 -d ' ' | sed -e s/,.*//g | uniq | grep -v "\["`;)" ssh
+complete -W "$(echo `\cat ~/.ssh/known_hosts | cut -f 1 -d ' ' | sed -e s/,.*//g | uniq | grep -v "\["`;)" ssh
 
 # bash: Place this in .bashrc.
 function iterm2_print_user_vars() {
