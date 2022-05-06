@@ -92,7 +92,6 @@ function uptimeinfo {
 export AWS_DEFAULT_REGION='ca-central-1'
 
 export WORKON_HOME=~/.envs
-source /usr/local/bin/virtualenvwrapper.sh
 
 export PATH=$PATH:~/bin
 
@@ -102,11 +101,6 @@ alias cat='cat.sh'
 
 # start a simple Python server, see https://stackoverflow.com/a/46595749/808804
 alias serve="python -m $(python -c 'import sys; print("http.server" if sys.version_info[:2] > (2,7) else "SimpleHTTPServer")')"
-
-#JAVA_HOME="/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Home/"
-#JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home"
-JAVA_HOME=$(/usr/libexec/java_home)
-export JAVA_HOME
 
 # source some env vars that I don't want in version control
 source ~/.passwords
@@ -165,11 +159,10 @@ function makevenv() {
 # Uses java cowsay, get at https://github.com/ricksbrown/cowsay
 # install fortune via brew
 # and lolcat is just, well, something you should always have
-java -jar ~/bin/cowsay.jar -f `java -jar ~/bin/cowsay.jar -l | awk 'BEGIN { srand() } int(rand() * NR) == 0 { x = $0 } END { print x }'` "`fortune`" | lolcat
+# java -jar ~/bin/cowsay.jar -f `java -jar ~/bin/cowsay.jar -l | awk 'BEGIN { srand() } int(rand() * NR) == 0 { x = $0 } END { print x }'` "`fortune`" | lolcat
 
 function joke { curl -s -H "Accept: application/json" https://icanhazdadjoke.com/ | jq ".joke"; }
 
-export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 

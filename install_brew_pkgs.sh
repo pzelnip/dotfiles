@@ -25,7 +25,6 @@ brew install pipx
 
 brew install pyenv
 brew install pyenv-virtualenv
-brew install pyenv-virtualenvwrapper
 
 # Now check if current arch is an M1 or not.
 CPU=`sysctl -n machdep.cpu.brand_string`
