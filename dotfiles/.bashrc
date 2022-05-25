@@ -168,6 +168,5 @@ eval "$(pyenv virtualenv-init -)"
 
 eval "$(starship init bash)"
 
-# set up Autoenv (install via brew)
-source $(brew --prefix autoenv)/activate.sh
-export AUTOENV_ENABLE_LEAVE=true
+# set up direnv (install via brew)
+eval "$(direnv hook bash)"
