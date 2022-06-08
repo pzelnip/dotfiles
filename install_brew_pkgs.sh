@@ -37,4 +37,4 @@ fi
 # Rest are the currently not M1-ready packages
 echo "Continuing"
 
-brew install hadolint
+# no non-m1 packages anymore, probably should delete the above check.
