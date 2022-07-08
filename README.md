@@ -102,10 +102,6 @@ sudo gem install lolcat
 
 Itsycal: <https://www.mowglii.com/itsycal/>
 
-### CPULed
-
-<https://itunes.apple.com/ca/app/cpu-led/id448189857?mt=12>
-
 ### Rectangle
 
 <https://rectangleapp.com/>
@@ -116,12 +112,29 @@ Settings are in `apple/Rectangle/RectangleConfig.json`
 
 <https://apps.apple.com/us/app/activity-timer/id808647808>
 
+### Horo
+
+<https://matthewpalmer.net/horo-free-timer-mac/>
+
+### Zappy
+
+<https://zapier.com/zappy>
+
+### Superpowered.me
+
+<https://superpowered.me/>
+
+### Raycast
+
+<https://www.raycast.com/>
+
+### Bartender
+
+<https://macbartender.com/>
+
 ### KeePassXC
 
 <https://keepassxc.org/>
-
-Though I have been using a very old version
-([2.2.2](https://github.com/keepassxreboot/keepassxc/releases/tag/2.2.0)).
 
 ### Pipx
 
