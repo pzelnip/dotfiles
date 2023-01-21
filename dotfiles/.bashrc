@@ -48,6 +48,8 @@ alias topcommands="history | tr -s ' ' | cut -d ' ' -f 5 | sort | uniq -c | sort
 
 alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 
+alias cloc=scc
+
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
