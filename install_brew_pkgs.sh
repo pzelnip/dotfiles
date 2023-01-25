@@ -12,6 +12,10 @@ brew install htop
 brew install cloc
 brew install direnv
 brew install scc
+brew install ctop
+brew install gping
+brew install lazydocker
+brew install lazygit
 
 # pipx is a special case, I want it installed before pyenv, and
 # I only want to run ensurepath if it's being installed now
