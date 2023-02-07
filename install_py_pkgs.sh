@@ -7,3 +7,4 @@ pipx install em-keyboard
 
 pipx install python_pkgs/cdr
 pipx install python_pkgs/gi
+pipx install python_pkgs/newticket
