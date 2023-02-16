@@ -43,6 +43,8 @@ alias kill_all_docker_images='docker rmi -f $(docker images -a -q)'
 
 alias shell_into_first_docker_container='docker exec -it $(docker ps | sed -n 2p | cut -d" "  -f 1) /bin/sh'
 
+alias sloc=scc
+
 # inspired by https://stackoverflow.com/a/68390/808804
 alias topcommands="history | tr -s ' ' | cut -d ' ' -f 5 | sort | uniq -c | sort -nr | head"
 
