@@ -1,0 +1,25 @@
+#!/bin/sh
+#
+# git prepare-commit-msg hook for automatically prepending an issue key
+# from the start of the current branch name to commit messages.
+
+# Inspired by: https://bitbucket.org/snippets/atlassian/qedp7d
+
+# check if commit is merge commit or a commit ammend
+if [ $2 = "merge" ] || [ $2 = "commit" ] ; then
+    exit
+fi
+ISSUE_KEY=`git branch | grep -o "\* \(.*/\)*[A-Z]\{2,\}-[0-9]\+" | grep -o "[A-Z]\{2,\}-[0-9]\+"`
+if [ $? -ne 0 ]; then
+    # no issue key in branch, use the default message
+    exit
+fi
+
+# check if a fixup commit, if it is, use default message
+FIXUP_COMMIT=`grep -o "fixup\!" $1`
+if [ $? -eq 0 ]; then
+    exit
+fi
+
+# issue key matched from branch prefix, prepend to commit message
+sed -i -e "1s/^/\[$ISSUE_KEY\] /" $1
