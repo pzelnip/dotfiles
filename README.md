@@ -98,10 +98,6 @@ Amphetamine: <https://itunes.apple.com/ca/app/amphetamine/id937984704?mt=12>
 sudo gem install lolcat
 ```
 
-### ItsyCal
-
-Itsycal: <https://www.mowglii.com/itsycal/>
-
 ### Rectangle
 
 <https://rectangleapp.com/>
