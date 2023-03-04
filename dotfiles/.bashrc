@@ -35,6 +35,7 @@ alias rd='rmdir'
 alias bashrc='\vim ~/.bashrc && time source ~/.bashrc'
 alias dusort='du -d 1 -h | sortdu.pl'
 
+alias pipup="pip install --upgrade pip"
 alias dos2unix="perl -pe 's/\r\n|\n|\r/\n/g'"
 
 alias kill_stopped_docker_containers='docker ps -aq --no-trunc | xargs docker rm'
