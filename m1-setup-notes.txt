@@ -36,3 +36,24 @@ added to my bashrc: eval "$(starship init bash)"
 brew install ag
 
 Found this site: https://doesitarm.com/kind/homebrew/
+
+---------------------------
+
+
+New Python setup notes (cobbled together from what I did on my M1 MBA and my M1 MBP):
+
+brew install pyenv
+pyenv install 3.9.11
+pyenv global 3.9.11
+python -m pip install virtualenvwrapper
+
+added to .bashrc:
+
+alias python='python3'
+export PATH=$PATH:/Users/adamparkin/.local/bin
+export WORKON_HOME=~/.envs
+VIRTUALENVWRAPPER_PYTHON=/Users/adamparkin/.pyenv/shims/python3
+# Replace 3.10.9 with version installed via pyenv
+source ~/.pyenv/versions/3.9.11/bin/virtualenvwrapper.sh
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"

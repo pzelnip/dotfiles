@@ -26,6 +26,7 @@ shopt -s checkwinsize
 
 # some more ls aliases
 alias ls='ls -Fl'
+alias python='python3'
 
 # adam's aliases
 alias grep='grep --color=auto'
@@ -96,9 +97,7 @@ function uptimeinfo {
 
 export AWS_DEFAULT_REGION='ca-central-1'
 
-export WORKON_HOME=~/.envs
-
-export PATH=$PATH:~/bin
+export PATH=$PATH:~/bin:/opt/homebrew/bin
 
 alias md5sum='md5 -r'
 
@@ -160,14 +159,14 @@ function makevenv() {
     python -m pip install --upgrade pip pylint
 }
 
-# cowsay on new prompt, inspired by https://schier.co/blog/2016/08/09/add-colorful-cows-to-your-terminal/
-# Uses java cowsay, get at https://github.com/ricksbrown/cowsay
-# install fortune via brew
-# and lolcat is just, well, something you should always have
-# java -jar ~/bin/cowsay.jar -f `java -jar ~/bin/cowsay.jar -l | awk 'BEGIN { srand() } int(rand() * NR) == 0 { x = $0 } END { print x }'` "`fortune`" | lolcat
-
 function joke { curl -s -H "Accept: application/json" https://icanhazdadjoke.com/ | jq ".joke"; }
 
+export PATH=$PATH:/Users/adamparkin/.local/bin
+
+export WORKON_HOME=~/.envs
+VIRTUALENVWRAPPER_PYTHON=/Users/adamparkin/.pyenv/shims/python3
+# Replace 3.10.9 with version installed via pyenv
+source ~/.pyenv/versions/3.10.9/bin/virtualenvwrapper.sh
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
@@ -175,3 +174,6 @@ eval "$(starship init bash)"
 
 # set up direnv (install via brew)
 eval "$(direnv hook bash)"
+
+# source some items that are specific to this machine (ie not in dotfiles repo)
+source ~/.machine_specific
