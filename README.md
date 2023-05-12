@@ -52,6 +52,9 @@ This can be restored by following: <https://gitlab.com/gnachman/iterm2/-/issues/
 I've also blogged about my iterm setup:
 <https://www.codependentcodr.com/iterm2-setup.html#iterm2-setup>
 
+Also very important: make sure you install the shell integration:
+<https://iterm2.com/documentation-shell-integration.html>
+
 ## Other Setup Stuff
 
 These are some other apps I install whenever I have to set up a new Mac.
