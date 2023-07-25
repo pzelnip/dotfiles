@@ -33,6 +33,7 @@ def do_jira_stuff(task_name, decrypt_key):
         f"https://zapierorg.atlassian.net/rest/api/2/issue/{task_name}?fields=summary",
         headers=headers,
         auth=get_auth(decrypt_key),
+        timeout=30,
     ).json()
     summary = response["fields"]["summary"]
     key = response["key"]
@@ -42,7 +43,7 @@ def do_jira_stuff(task_name, decrypt_key):
 def do_git_stuff(task_name, branch):
     subprocess.run(f"git checkout {branch}".split(), check=True)
     subprocess.run(f"git pull origin {branch}".split(), check=True)
-    subprocess.run(f"git checkout -b {task_name}".split(), check=True)
+    subprocess.run(f"git checkout -b {task_name[:100]}".split(), check=True)
 
 
 def add_to_tasks_context(task_name):

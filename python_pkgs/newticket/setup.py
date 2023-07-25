@@ -3,7 +3,7 @@ import setuptools
 
 setuptools.setup(
     name="newticket",
-    version="0.0.1",
+    version="0.0.2",
     author="Adam Parkin",
     author_email="pzelnip@gmail.com",
     description="Script for creating a new task in VS Code based on a JIRA reference",
@@ -17,6 +17,8 @@ setuptools.setup(
     ],
     install_requires="requests cryptocode python-slugify".split(),
     package_dir={"newticket": "newticket"},
-    entry_points={"console_scripts": ["newticket=newticket.newticket:main"],},
+    entry_points={
+        "console_scripts": ["newticket=newticket.newticket:main"],
+    },
     python_requires=">=3.5",
 )
