@@ -1,5 +1,15 @@
 #!/usr/bin/env python3
 
+"""
+Handy dandy script for starting a new JIRA ticket, does some novel things
+
+* given a ticket ref (e.g. MYPROJ-1234), queries JIRA for ticket description
+* slugifies that description
+* cuts a branch with the slugified description (after pulling latest from origin for specified target branch)
+* creates a task in VS Code
+"""
+
+
 import json
 import subprocess
 import sys
