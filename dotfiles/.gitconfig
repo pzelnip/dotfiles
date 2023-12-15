@@ -47,12 +47,14 @@
     forcepush = push --force-with-lease
 
     cleanbranches = !sh -c 'git remote | xargs -n 1 git fetch -v --prune $1 && git branch --merged | egrep -v master | egrep -v mainline | egrep -v main | xargs git branch -d'
-    ploms = pull origin master
-    plom = pull origin main
-    ploml = pull origin mainline
+    ploms = !sh -c 'git checkout master && git pull origin master'
+    plom = !sh -c 'git checkout main && git pull origin main'
+    ploml = !sh -c 'git checkout mainline && git pull origin mainline'
+    plod = !sh -c 'git checkout development && git pull origin development'
     plomsclean = !sh -c 'git ploms && git cleanbranches'
     plomclean = !sh -c 'git plom && git cleanbranches'
     plomlclean = !sh -c 'git ploml && git cleanbranches'
+    plodclean = !sh -c 'git plod && git cleanbranches'
 
     cleangonebranches = "!(git branch -vv | grep ': gone]' |  grep -v '*' | awk '{ print $1; }' | xargs git branch -D)"
 
