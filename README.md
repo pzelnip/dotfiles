@@ -135,6 +135,10 @@ Settings are in `apple/Rectangle/RectangleConfig.json`
 
 <https://keepassxc.org/>
 
+### IstatMenus
+
+<https://bjango.com/mac/istatmenus/>
+
 ### Pipx
 
 Install via `install_brew_pkgs.sh`
