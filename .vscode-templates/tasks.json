@@ -1,0 +1,57 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Start new ticket",
+            "type": "shell",
+            "command": "newticket ${input:newTicket} ${input:decryptKey} main",
+            "problemMatcher": [],
+            "runOptions": {
+                "reevaluateOnRerun": false
+            },
+            "presentation": {
+                "echo": false,
+                "reveal": "always",
+                "focus": false,
+                "panel": "new",
+                "showReuseMessage": false
+            }
+        },
+        {
+            "label": "Start new from specific branch",
+            "type": "shell",
+            "command": "newticket ${input:newTicket} ${input:decryptKey} ${input:targetBranch}",
+            "problemMatcher": [],
+            "runOptions": {
+                "reevaluateOnRerun": false
+            },
+            "presentation": {
+                "echo": false,
+                "reveal": "always",
+                "focus": false,
+                "panel": "new",
+                "showReuseMessage": false
+            }
+        }
+    ],
+    "inputs": [
+        {
+            "id": "newTicket",
+            "type": "promptString",
+            "description": "Name of ticket (ex: EDITOR-1234-do-the-thing)?"
+        },
+        {
+            "id": "targetBranch",
+            "type": "promptString",
+            "description": "Target branch to cut from?"
+        },
+        {
+            "id": "decryptKey",
+            "type": "promptString",
+            "description": "Decryption key?",
+            "password": true
+        }
+    ]
+}
