@@ -67,7 +67,7 @@ The best package manager: <https://brew.sh/>
 
 Install via `install_brew_pkgs.sh`
 
-### Pyenv
+### asdf
 
 Install via `install_brew_pkgs.sh`
 

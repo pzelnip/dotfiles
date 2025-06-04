@@ -54,6 +54,8 @@ alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 
 alias cloc=scc
 
+alias dcd='docker compose down'
+
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
@@ -164,11 +166,22 @@ function joke { curl -s -H "Accept: application/json" https://icanhazdadjoke.com
 export PATH=$PATH:/Users/adamparkin/.local/bin
 
 export WORKON_HOME=~/.envs
-VIRTUALENVWRAPPER_PYTHON=/Users/adamparkin/.pyenv/shims/python3
-# Replace 3.10.9 with version installed via pyenv
-source ~/.pyenv/versions/3.10.9/bin/virtualenvwrapper.sh
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+
+# this is old pyenv config, probably should remove
+# VIRTUALENVWRAPPER_PYTHON=/Users/adamparkin/.pyenv/shims/python3
+# # Replace 3.10.9 with version installed via pyenv
+# source ~/.pyenv/versions/3.10.9/bin/virtualenvwrapper.sh
+# eval "$(pyenv init -)"
+# eval "$(pyenv virtualenv-init -)"
+
+# set up asdf with virtualenvwrapper, requires the virtualenvwrapper package to be installed
+# to the python interpreter that asdf is using.
+VIRTUALENVWRAPPER_PYTHON=/Users/adamparkin/.asdf/shims/python
+# FULLPYTHONPATH=`asdf which python`
+# PYTHONPATH=`dirname $FULLPYTHONPATH`
+PYTHONPATH=$(dirname $(asdf which python))
+source $PYTHONPATH/virtualenvwrapper.sh
+export PATH=$PYTHONPATH:$PATH
 
 eval "$(starship init bash)"
 
@@ -177,3 +190,5 @@ eval "$(direnv hook bash)"
 
 # source some items that are specific to this machine (ie not in dotfiles repo)
 source ~/.machine_specific
+
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
