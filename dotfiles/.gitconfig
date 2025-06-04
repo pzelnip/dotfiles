@@ -13,7 +13,7 @@
 [core]
     editor = vim
     pager = less -r
-    excludesfile = /Users/aparkin/.gitignore_global
+    excludesfile = ~/.gitignore_global
 
 [alias]
     # interactive fixup, see: https://jordanelver.co.uk/blog/2020/06/04/fixing-commits-with-git-commit-fixup-and-git-rebase-autosquash/
@@ -76,3 +76,9 @@
 
 [init]
     defaultBranch = main
+
+# Conditional config for different remotes (useful for work vs personal)
+[includeIf "hasconfig:remote.*.url:git@gitlab.com:mycompany/**"]
+  path = ~/.gitconfig-mycompany-gitlab
+[includeIf "hasconfig:remote.*.url:https://gitlab.com/mycompany/**"]
+  path = ~/.gitconfig-mycompany-gitlab
