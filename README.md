@@ -119,9 +119,9 @@ Settings are in `apple/Rectangle/RectangleConfig.json`
 
 <https://zapier.com/zappy>
 
-### Superpowered.me
+### InYourFace
 
-<https://superpowered.me/>
+<https://www.inyourface.app/>
 
 ### Raycast
 

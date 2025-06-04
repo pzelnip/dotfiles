@@ -28,8 +28,9 @@ fi
 # this seems silly, but want to do this to check for update
 brew install pipx
 
-brew install pyenv
-brew install pyenv-virtualenv
+# I no longer use pyenv, but leaving here for later reference.
+# brew install pyenv
+# brew install pyenv-virtualenv
 
 # Now check if current arch is an M1 or not.
 CPU=`sysctl -n machdep.cpu.brand_string`
