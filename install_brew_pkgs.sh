@@ -18,6 +18,12 @@ brew install lazygit
 brew install fzf
 brew install asdf
 
+# https://docs.gitlab.com/editor_extensions/gitlab_cli/
+brew install glab
+
+# https://github.com/ankitpokhrel/jira-cli
+brew install jira-cli
+
 # pipx is a special case
 # I only want to run ensurepath if it's being installed now
 echo "Checking if pipx is installed"
