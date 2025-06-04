@@ -71,9 +71,12 @@ Install via `install_brew_pkgs.sh`
 
 Install via `install_brew_pkgs.sh`
 
-### Visual Studio Code
+### Visual Studio Code (VSCode)
 
 My editor of choice: <https://code.visualstudio.com/>
+
+Note that installing on a new machine, I had to reset the default shell, even
+when using settings sync: <https://code.visualstudio.com/docs/terminal/profiles>
 
 ### Sublime Text
 
