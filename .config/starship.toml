@@ -62,6 +62,8 @@ format = '([\[$conflicted$deleted$renamed$modified$staged$behind\]]($style) )'
 modified = '*'
 
 [python]
+# note I don't normally use Pyenv, but if used the prefix will be referenced
+# And if not, then it's ignored
 format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\))]($style)'
 
 [status]

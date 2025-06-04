@@ -167,13 +167,6 @@ export PATH=$PATH:/Users/adamparkin/.local/bin
 
 export WORKON_HOME=~/.envs
 
-# this is old pyenv config, probably should remove
-# VIRTUALENVWRAPPER_PYTHON=/Users/adamparkin/.pyenv/shims/python3
-# # Replace 3.10.9 with version installed via pyenv
-# source ~/.pyenv/versions/3.10.9/bin/virtualenvwrapper.sh
-# eval "$(pyenv init -)"
-# eval "$(pyenv virtualenv-init -)"
-
 # set up asdf with virtualenvwrapper, requires the virtualenvwrapper package to be installed
 # to the python interpreter that asdf is using.
 VIRTUALENVWRAPPER_PYTHON=/Users/adamparkin/.asdf/shims/python

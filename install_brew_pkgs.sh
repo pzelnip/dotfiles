@@ -18,7 +18,7 @@ brew install lazygit
 brew install fzf
 brew install asdf
 
-# pipx is a special case, I want it installed before pyenv, and
+# pipx is a special case
 # I only want to run ensurepath if it's being installed now
 echo "Checking if pipx is installed"
 if ! type "pipx" > /dev/null 2>&1; then
@@ -28,10 +28,6 @@ if ! type "pipx" > /dev/null 2>&1; then
 fi
 # this seems silly, but want to do this to check for update
 brew install pipx
-
-# I no longer use pyenv, but leaving here for later reference.
-# brew install pyenv
-# brew install pyenv-virtualenv
 
 # Now check if current arch is an M1 or not.
 CPU=`sysctl -n machdep.cpu.brand_string`
