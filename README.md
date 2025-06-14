@@ -197,6 +197,12 @@ killall Finder
 
 Source: <https://apple.stackexchange.com/questions/99213/is-it-possible-to-always-show-hidden-dotfiles-in-open-save-dialogs/99214#99214>
 
+### Change Default Shell to Bash (4 Lyfe)
+
+```shell
+chsh -s /bin/bash
+```
+
 ### Disable The Touchbar
 
 Since it's horrible: <https://osxdaily.com/2018/08/30/disable-touch-bar-macbook-pro/>
