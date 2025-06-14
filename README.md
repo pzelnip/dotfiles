@@ -141,6 +141,9 @@ shortcuts that are sensitive to my work environment).
 
 <https://www.raycast.com/>
 
+I also have my config backed up elsewhere (mostly as there's a couple of
+shortcuts & secrets that are sensitive to my work environment).
+
 ### Bartender
 
 <https://macbartender.com/>
