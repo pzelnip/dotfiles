@@ -126,6 +126,17 @@ Settings are in `apple/Rectangle/RectangleConfig.json`
 
 <https://www.inyourface.app/>
 
+### Stream Deck
+
+<https://www.elgato.com/en/gaming/downloads>
+
+There's also a couple plugins that have been pulled from the marketplace,
+but are committed in the apple/streamdeck directory.  Unzip them to
+`~/Library/Application\ Support/com.elgato.StreamDeck/Plugins`
+
+I also have my config backed up elsewhere (mostly as there's a couple of
+shortcuts that are sensitive to my work environment).
+
 ### Raycast
 
 <https://www.raycast.com/>
