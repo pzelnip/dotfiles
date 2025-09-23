@@ -170,6 +170,28 @@ Then symlink (or copy) `.config/starship.toml` to `~/.config`.
 
 I've also blogged about my Starship setup: <https://www.codependentcodr.com/using-starship-for-terminal-prompt-goodness.html>
 
+### direnv
+
+Install with brew via `install_brew_pkgs.sh`
+
+Then put this into `~/.config/direnv/direnvrc`:
+
+```shell
+# .envrc or ~/.config/direnv/direnvrc
+#!/usr/bin/env bash
+
+
+gitignore_local() {
+    if [ -f .gitignore.local ]; then
+        cp .gitignore.local .git/info/exclude
+    fi
+}
+
+gitignore_local
+```
+
+From: <https://joshthomas.dev/til/direnv/using-direnv-to-add-a-personal-gitignore-file-to-repos/>
+
 ### Misc Global Python Commands
 
 All installed with Pipx.  Use the supplied `install_py_pkgs.sh` script.
