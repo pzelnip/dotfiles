@@ -161,6 +161,19 @@ function makevenv() {
     python -m pip install --upgrade pip pylint
 }
 
+# code change directory, taken from: https://zapier.slack.com/archives/CV473C8J1/p1761750275768739
+function ccd {
+    local selected
+    selected=$(find ~/temp/sandbox -maxdepth 7 -mindepth 1 -type d 2>/dev/null |
+        sed 's|^'"$HOME"'/temp/sandbox/||' |
+        fzf --height 40% --reverse --preview 'ls -la ~/temp/sandbox/{}' \
+            --preview-window=right:50%:wrap)
+
+    if [[ -n "$selected" ]]; then
+        cd ~/temp/sandbox/"$selected"
+    fi
+}
+
 function joke { curl -s -H "Accept: application/json" https://icanhazdadjoke.com/ | jq ".joke"; }
 
 export PATH=$PATH:/Users/adamparkin/.local/bin
