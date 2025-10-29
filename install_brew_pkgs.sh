@@ -17,6 +17,8 @@ brew install gping
 brew install lazygit
 brew install fzf
 brew install asdf
+brew install bat
+brew install rg
 
 # https://docs.gitlab.com/editor_extensions/gitlab_cli/
 brew install glab
