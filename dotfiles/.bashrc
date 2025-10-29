@@ -176,6 +176,31 @@ function ccd {
 
 function joke { curl -s -H "Accept: application/json" https://icanhazdadjoke.com/ | jq ".joke"; }
 
+# ripgrep->fzf->VS Code, derived from: https://junegunn.github.io/fzf/tips/ripgrep-integration/
+rfv() {
+  RELOAD='reload:rg --column --color=always --smart-case {q} || :'
+  OPENER='if [[ $FZF_SELECT_COUNT -eq 0 ]]; then
+            GITROOT=$(git -C $(dirname {1}) rev-parse --show-toplevel 2>/dev/null)
+            if [[ -n $GITROOT ]]; then
+              code $GITROOT --goto {1}:{2}
+            else
+              echo "No git repo for {1}:{2}, opening in Sublime instead"
+              /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl {1}:{2}
+            fi
+          else
+            echo "Nothing selected"
+          fi'
+  fzf --disabled --ansi --multi \
+      --bind "start:$RELOAD" --bind "change:$RELOAD" \
+      --bind "enter:become:$OPENER" \
+      --bind "ctrl-o:execute:$OPENER" \
+      --bind "ctrl-/:toggle-preview" \
+      --delimiter : \
+      --preview 'bat --style=full --color=always --highlight-line {2} {1}' \
+      --preview-window '~4,+{2}+4/3,<80(up)' \
+      --query "$*"
+}
+
 export PATH=$PATH:/Users/adamparkin/.local/bin
 
 export WORKON_HOME=~/.envs
