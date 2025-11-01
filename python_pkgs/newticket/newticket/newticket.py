@@ -11,31 +11,46 @@ Handy dandy script for starting a new JIRA ticket, does some novel things
 """
 
 
+import argparse
 import json
 import subprocess
-import sys
 from datetime import datetime
 from getpass import getpass
 from shutil import copyfile
 
+import keyring
+from cryptocode import decrypt, encrypt
 from requests import request
 from requests.auth import HTTPBasicAuth
-from cryptocode import decrypt, encrypt
 from slugify import slugify  # from python-slugify
 
 
-def get_auth(decrypt_key):
-    # keyfile contains the encrypted contents of my JIRA password,
-    # read and decrypt to get the actual password & generate the
-    # http basic auth.
-    with open(".vscode/keyfile", "r", encoding="utf-8") as fobj:
-        keyfile = fobj.readline().strip()
+def get_auth(account, key_string):
+    """Get JIRA auth."""
 
-    passcode = decrypt(keyfile, decrypt_key)
-    return HTTPBasicAuth(username="adam.parkin@zapier.com", password=passcode)
+    # Currently this is implemented to use keyring to get the password/API
+    # token.
+    #
+    # See https://id.atlassian.com/manage-profile/security/api-tokens for
+    # details on how to generate a token.
+    #
+    # We store the token encrypted in the keyring using a user-provided
+    # decryption string.
+
+    passcode = keyring.get_password("jira", account)
+    if not passcode:
+        print("No JIRA password stored in keyring")
+        passcode = encrypt(getpass("Enter JIRA API token: "), key_string)
+        keyring.set_password("jira", account, passcode)
+
+    if (decrypted_passcode := decrypt(passcode, key_string)) is False:
+        print("Failed to decrypt JIRA API token, perhaps the key is wrong?")
+        exit(1)
+
+    return HTTPBasicAuth(username=account, password=decrypted_passcode)
 
 
-def do_jira_stuff(task_name, decrypt_key):
+def do_jira_stuff(task_name, account, key_string):
     """Build a slugified task name from JIRA ticket info."""
 
     issue_type_icon_map = {
@@ -49,11 +64,11 @@ def do_jira_stuff(task_name, decrypt_key):
         "Task": "📝",
     }
     priority_level_map = {
-        "Highest": "0️⃣",
-        "High": "1️⃣",
-        "Medium": "2️⃣",
-        "Low": "3️⃣",
-        "Lowest": "4️⃣",
+        "Highest": "0",
+        "High": "1",
+        "Medium": "2",
+        "Low": "3",
+        "Lowest": "4",
     }
 
     headers = {
@@ -61,9 +76,10 @@ def do_jira_stuff(task_name, decrypt_key):
     }
     response = request(
         "GET",
+        # FIXME: move to newest API
         f"https://zapierorg.atlassian.net/rest/api/2/issue/{task_name}?fields=summary,issuetype,priority",
         headers=headers,
-        auth=get_auth(decrypt_key),
+        auth=get_auth(account, key_string),
         timeout=30,
     ).json()
 
@@ -74,9 +90,9 @@ def do_jira_stuff(task_name, decrypt_key):
     key = response["key"]
     priority = fields.get("priority", {}).get("name")
     priority = (
-        ""
+        "❌"
         if not priority or priority.lower() == "none"
-        else priority_level_map.get(priority, "❓")
+        else f"P{priority_level_map.get(priority, "❓")}"
     )
 
     return f"{key}-{priority}-{icon}-{slugify(summary)}"
@@ -118,33 +134,28 @@ def add_to_tasks_context(task_name):
         fobj.write(data_to_write)
 
 
-def regenerate_key_file():
-    """Regenerate the keyfile used to store encrypted JIRA password."""
-
-    password = getpass("Enter JIRA password: ")
-    encrypted = encrypt(password, getpass("enter decryption key: "))
-    with open(".vscode/keyfile", "w", encoding="utf-8") as fobj:
-        fobj.write(encrypted)
-    print("Successfully regenerated keyfile")
-
-
 def main():
     """
     Main entry point for the script.
     """
-    # if 1st arg is "regen" then regenerate the keyfile
-    if len(sys.argv) == 2 and sys.argv[1] == "regen":
-        regenerate_key_file()
-        return 1
 
-    if len(sys.argv) < 4:
-        print("Need to specify name, decryption key, and branch")
-        return 1
+    parser = argparse.ArgumentParser(
+        description="Create a new JIRA ticket branch and VS Code task"
+    )
+    parser.add_argument("task_name", help="JIRA ticket reference (e.g. MYPROJ-1234)")
+    parser.add_argument("branch", help="Target branch to checkout from")
+    parser.add_argument("account", help="JIRA account/username")
+    parser.add_argument(
+        "key_string", help="Decryption key for decoding stored API token"
+    )
 
-    task_name = sys.argv[1]
-    key = sys.argv[2]
-    branch = sys.argv[3]
-    task_name = do_jira_stuff(task_name, key)
+    args = parser.parse_args()
+
+    task_name = args.task_name
+    branch = args.branch
+    account = args.account
+    key_string = args.key_string
+    task_name = do_jira_stuff(task_name, account, key_string)
     print(f"Creating new ticket: {task_name}")
     do_git_stuff(task_name, branch)
     add_to_tasks_context(task_name)

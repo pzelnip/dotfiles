@@ -8,6 +8,27 @@
 ### Fixed
 ### Security
 
+## [1.0.0] - 2025-11-01
+
+### Changed
+
+- *BREAKING* Updated command-line arguments: now requires account parameter
+  in addition to decryption key
+- Command usage now: `newticket <ticket-id> <branch> <account> <key>`
+- Switched from encrypted keyfile to `keyring` library for secure
+  credential storage
+- use argparse instead of `sys.argv` for command line arguments
+- priority indicator changed from emoji numeral to ASCI digit (when known)
+
+### Removed
+
+- Removed `regenerate_key_file()` function and "regen" command
+- Removed dependency on `.vscode/keyfile` for password storage
+
+### Security
+
+- Improved security by using OS-level keyring instead of encrypted file for credential storage
+
 ## [0.0.3] - 2025-11-01
 
 ### Added
