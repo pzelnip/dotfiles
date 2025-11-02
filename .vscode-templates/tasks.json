@@ -6,23 +6,7 @@
         {
             "label": "Start new ticket",
             "type": "shell",
-            "command": "newticket ${input:newTicket} ${input:decryptKey} main",
-            "problemMatcher": [],
-            "runOptions": {
-                "reevaluateOnRerun": false
-            },
-            "presentation": {
-                "echo": false,
-                "reveal": "always",
-                "focus": false,
-                "panel": "new",
-                "showReuseMessage": false
-            }
-        },
-        {
-            "label": "Start new from specific branch",
-            "type": "shell",
-            "command": "newticket ${input:newTicket} ${input:decryptKey} ${input:targetBranch}",
+            "command": "newticket -t ${input:newTicket} -a adam.parkin@zapier.com -k ${input:decryptKey}",
             "problemMatcher": [],
             "runOptions": {
                 "reevaluateOnRerun": false
@@ -41,11 +25,6 @@
             "id": "newTicket",
             "type": "promptString",
             "description": "Name of ticket (ex: EDITOR-1234-do-the-thing)?"
-        },
-        {
-            "id": "targetBranch",
-            "type": "promptString",
-            "description": "Target branch to cut from?"
         },
         {
             "id": "decryptKey",
