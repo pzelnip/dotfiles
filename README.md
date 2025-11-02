@@ -196,6 +196,41 @@ After this you can add a `.envrc` to a directory (can be empty) and then use
 `.gitignore.local` to locally ignore files from git (ie not modifying the source
 controlled `.gitignore` file)
 
+### ghorg
+
+Install with brew via `install_brew_pkgs.sh`
+
+Useful for cloning an entire orgs repos.  Sample config for a Gitlab-based org:
+
+```yaml
+GHORG_GITLAB_TOKEN: <Gitlab API token>
+GHORG_PRESERVE_DIRECTORY_STRUCTURE: true
+GHORG_BACKUP: false
+GHORG_ABSOLUTE_PATH_TO_CLONE_TO: /Users/adamparkin/where-to-clone-to
+GHORG_SCM_TYPE: gitlab
+GHORG_CLONE_PROTOCOL: https
+```
+
+Then run with:
+
+```shell
+ghorg clone <org>
+```
+
+May also want to run that on a crontab:
+
+```shell
+crontab -e
+```
+
+Add line (run weekly at noon on Wednesday, replace/modify as you see fit):
+
+```cron
+0 12 * * 3 /path/to/ghorg clone zapier > /tmp/ghorg.log 2>&1
+```
+
+Replace `/path/to/ghorg` with the output of `which ghorg` (probably something like `/opt/homebrew/bin/ghorg`)
+
 ### Misc Global Python Commands
 
 All installed with Pipx.  Use the supplied `install_py_pkgs.sh` script.
