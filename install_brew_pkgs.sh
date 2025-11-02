@@ -20,6 +20,7 @@ brew install asdf
 brew install bat
 brew install rg
 brew install ghorg
+brew install imagemagick
 
 # https://docs.gitlab.com/editor_extensions/gitlab_cli/
 brew install glab
