@@ -174,6 +174,8 @@ I've also blogged about my Starship setup: <https://www.codependentcodr.com/usin
 
 Install with brew via `install_brew_pkgs.sh`
 
+From: <https://joshthomas.dev/til/direnv/using-direnv-to-add-a-personal-gitignore-file-to-repos/>
+
 Then put this into `~/.config/direnv/direnvrc`:
 
 ```shell
@@ -190,7 +192,9 @@ gitignore_local() {
 gitignore_local
 ```
 
-From: <https://joshthomas.dev/til/direnv/using-direnv-to-add-a-personal-gitignore-file-to-repos/>
+After this you can add a `.envrc` to a directory (can be empty) and then use
+`.gitignore.local` to locally ignore files from git (ie not modifying the source
+controlled `.gitignore` file)
 
 ### Misc Global Python Commands
 
