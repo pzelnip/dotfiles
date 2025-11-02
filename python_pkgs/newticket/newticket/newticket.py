@@ -12,6 +12,7 @@ Handy dandy script for starting a new JIRA ticket, does some novel things
 
 
 import argparse
+import contextlib
 import json
 import subprocess
 from datetime import datetime
@@ -98,6 +99,35 @@ def do_jira_stuff(task_name, account, key_string):
     return f"{key}-{priority}-{icon}-{slugify(summary)}"
 
 
+def get_default_branch():
+    """Get the default branch name from git."""
+
+    # try origin/HEAD first
+    with contextlib.suppress(subprocess.CalledProcessError):
+        result = subprocess.run(
+            ["git", "rev-parse", "--abbrev-ref", "origin/HEAD"],
+            capture_output=True,
+            text=True,
+            check=True,
+        )
+        return result.stdout.strip().replace("origin/", "")
+
+    # fall back to git ls-remote if that fails
+    with contextlib.suppress(subprocess.CalledProcessError):
+        result = subprocess.run(
+            ["git", "ls-remote", "--symref", "origin", "HEAD"],
+            capture_output=True,
+            text=True,
+            check=True,
+        )
+        for line in result.stdout.strip().split("\n"):
+            if line.startswith("ref:"):
+                return line.split()[1].replace("refs/heads/", "")
+
+    # if all else fails, raise an error
+    raise RuntimeError("Failed to determine default branch")
+
+
 def do_git_stuff(task_name, branch):
     """Create & checkout a new git branch for the task."""
     subprocess.run(f"git checkout {branch}".split(), check=True)
@@ -134,29 +164,35 @@ def add_to_tasks_context(task_name):
         fobj.write(data_to_write)
 
 
+def parse_args():
+    parser = argparse.ArgumentParser(
+        description="Create a new JIRA ticket branch and VS Code task"
+    )
+    parser.add_argument(
+        "-t",
+        "--task",
+        required=True,
+        help="JIRA ticket reference (e.g. MYPROJ-1234)",
+    )
+    parser.add_argument("-a", "--account", required=True, help="JIRA account/username")
+    parser.add_argument(
+        "-k",
+        "--key",
+        required=True,
+        help="Decryption key for decoding stored API token",
+    )
+    return parser.parse_args()
+
+
 def main():
     """
     Main entry point for the script.
     """
+    args = parse_args()
 
-    parser = argparse.ArgumentParser(
-        description="Create a new JIRA ticket branch and VS Code task"
-    )
-    parser.add_argument("task_name", help="JIRA ticket reference (e.g. MYPROJ-1234)")
-    parser.add_argument("branch", help="Target branch to checkout from")
-    parser.add_argument("account", help="JIRA account/username")
-    parser.add_argument(
-        "key_string", help="Decryption key for decoding stored API token"
-    )
-
-    args = parser.parse_args()
-
-    task_name = args.task_name
-    branch = args.branch
-    account = args.account
-    key_string = args.key_string
-    task_name = do_jira_stuff(task_name, account, key_string)
-    print(f"Creating new ticket: {task_name}")
+    task_name = do_jira_stuff(args.task, args.account, args.key)
+    branch = get_default_branch()
+    print(f"Creating task branch: {task_name} based on {branch}")
     do_git_stuff(task_name, branch)
     add_to_tasks_context(task_name)
 

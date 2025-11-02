@@ -14,10 +14,12 @@
 
 - *BREAKING* Updated command-line arguments: now requires account parameter
   in addition to decryption key
-- Command usage now: `newticket <ticket-id> <branch> <account> <key>`
+- *BREAKING* Updated command-line arguments: branch no longer supplied, read
+  from repo instead
 - Switched from encrypted keyfile to `keyring` library for secure
   credential storage
 - use argparse instead of `sys.argv` for command line arguments
+- Command usage now: `newticket -t <ticket-id> -a <account> -k <key>`
 - priority indicator changed from emoji numeral to ASCI digit (when known)
 
 ### Removed
