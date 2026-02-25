@@ -8,6 +8,13 @@
 ### Fixed
 ### Security
 
+## [1.0.1] - 2026-02-24
+
+### Changed
+
+- Jira ticket emoji's changed from red x for no priority & green checkmark for
+  story to more sensible ones
+
 ## [1.0.0] - 2025-11-01
 
 ### Changed
