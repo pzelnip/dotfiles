@@ -58,7 +58,7 @@ def do_jira_stuff(task_name, account, key_string):
         "Initiative": "☑️",
         "Epic": "⚡",
         "Spike": "💡",
-        "Story": "✅",
+        "Story": "✍️",
         "Bug": "🐛",
         "Design Task": "🎨",
         "Security Bug": "🔒",
@@ -91,9 +91,9 @@ def do_jira_stuff(task_name, account, key_string):
     key = response["key"]
     priority = fields.get("priority", {}).get("name")
     priority = (
-        "❌"
+        "🤷‍♂️"
         if not priority or priority.lower() == "none"
-        else f"P{priority_level_map.get(priority, "❓")}"
+        else f"P{priority_level_map.get(priority, "???")}"
     )
 
     return f"{key}-{priority}-{icon}-{slugify(summary)}"
