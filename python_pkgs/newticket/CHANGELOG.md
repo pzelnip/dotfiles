@@ -8,6 +8,13 @@
 ### Fixed
 ### Security
 
+## [1.0.2] - 2026-02-26
+
+### Fixed
+
+- emojis for story from 1.0.1 were wonky, so reverted back to before, and just
+  replaced red X emoji with X character
+
 ## [1.0.1] - 2026-02-24
 
 ### Changed

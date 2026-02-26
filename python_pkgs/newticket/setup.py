@@ -3,7 +3,7 @@ import setuptools
 
 setuptools.setup(
     name="newticket",
-    version="1.0.1",
+    version="1.0.2",
     author="Adam Parkin",
     author_email="pzelnip@gmail.com",
     description="Script for creating a new task in VS Code based on a JIRA reference",
