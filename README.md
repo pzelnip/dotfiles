@@ -160,6 +160,10 @@ shortcuts & secrets that are sensitive to my work environment).
 
 Install via `install_brew_pkgs.sh`
 
+### Clocker
+
+Install via app store, I use this for a second clock in my menu bar to show UTC in addition to my local time.
+
 ### Starship
 
 For that nice prompt goodness: <https://starship.rs/>
