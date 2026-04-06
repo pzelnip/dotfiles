@@ -148,6 +148,12 @@ shortcuts & secrets that are sensitive to my work environment).
 
 <https://macbartender.com/>
 
+### QLMarkdown
+
+For previewing markdown in Finder
+
+<https://github.com/sbarex/QLMarkdown>
+
 ### KeePassXC
 
 <https://keepassxc.org/>
