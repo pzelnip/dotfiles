@@ -98,6 +98,10 @@ As well, I add the following keymappings (open "keybindings" in the command pall
 
 Amphetamine: <https://itunes.apple.com/ca/app/amphetamine/id937984704?mt=12>
 
+### DaisyDisk
+
+DaisyDisk: <https://daisydiskapp.com/download/>
+
 ### LolCat
 
 ```shell
