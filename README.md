@@ -170,6 +170,39 @@ For previewing markdown in Finder
 
 Install via `install_brew_pkgs.sh`
 
+### m1ddc
+
+Install via `install_brew_pkgs.sh`
+
+I use this to set up apps that can switch my monitor inputs.  Those can then be
+wired up on my Stream Deck:
+
+* Open Script Editor (Spotlight → "Script Editor").
+* New document, paste:
+
+```applescript
+do shell script "/opt/homebrew/bin/m1ddc display <UUID FOR MONITOR> set input 17"
+```
+
+* replace <UUID FOR MONITOR> with the UUID for that monitor (find with `m1ddc display list`)
+* File → Export… → File Format: Application. Save as Dell HDMI.app somewhere
+  stable (e.g. `~/Applications/`).
+* In Stream Deck, use System → Open and point it at Dell HDMI.app.
+
+Claude indicated that sometimes there's a dock icon flash on the AppleScript app
+when run and suggested this to fix that (I didn't run into this)
+
+```text
+If even the brief dock icon bothers you: right-click the .app → Show Package Contents → Contents/Info.plist → add:
+
+<key>LSUIElement</key>
+<true/>
+</dict>
+
+(inside the existing top-level <dict>). It'll now run with zero visible UI.
+```
+
+
 ### Clocker
 
 Install via app store, I use this for a second clock in my menu bar to show UTC in addition to my local time.

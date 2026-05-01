@@ -21,6 +21,7 @@ brew install bat
 brew install rg
 brew install ghorg
 brew install imagemagick
+brew install m1ddc
 
 # https://docs.gitlab.com/editor_extensions/gitlab_cli/
 brew install glab
