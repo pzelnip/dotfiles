@@ -181,10 +181,20 @@ wired up on my Stream Deck:
 * New document, paste:
 
 ```applescript
-do shell script "/opt/homebrew/bin/m1ddc display <UUID FOR MONITOR> set input 17"
+set m1ddc to "/opt/homebrew/bin/m1ddc"
+set displayID to "<UUID FOR MONITOR>"
+
+set currentInput to do shell script m1ddc & " display " & displayID & " get input"
+
+if currentInput is "17" then
+	do shell script m1ddc & " display " & displayID & " set input 18"
+else
+	do shell script m1ddc & " display " & displayID & " set input 17"
+end if
 ```
 
 * replace <UUID FOR MONITOR> with the UUID for that monitor (find with `m1ddc display list`)
+* 18 & 17 are my HDMI 1 & HDMI 2 inputs, YMMV on those specific values.
 * File → Export… → File Format: Application. Save as Dell HDMI.app somewhere
   stable (e.g. `~/Applications/`).
 * In Stream Deck, use System → Open and point it at Dell HDMI.app.
@@ -201,7 +211,6 @@ If even the brief dock icon bothers you: right-click the .app → Show Package C
 
 (inside the existing top-level <dict>). It'll now run with zero visible UI.
 ```
-
 
 ### Clocker
 
