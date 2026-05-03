@@ -176,6 +176,17 @@ function ccd {
 
 function joke { curl -s -H "Accept: application/json" https://icanhazdadjoke.com/ | jq ".joke"; }
 
+
+gwt() {
+  # List worktrees, pick one via fzf, extract the path, and cd into it
+  local target_dir
+  target_dir=$(git worktree list | fzf --height 40% --reverse --info=inline | awk '{print $1}')
+
+  if [ -n "$target_dir" ]; then
+    cd "$target_dir" || return
+  fi
+}
+
 # ripgrep->fzf->VS Code, derived from: https://junegunn.github.io/fzf/tips/ripgrep-integration/
 rfv() {
   RELOAD='reload:rg --column --color=always --smart-case {q} || :'
