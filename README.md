@@ -152,6 +152,10 @@ shortcuts & secrets that are sensitive to my work environment).
 
 <https://macbartender.com/>
 
+As of June 2026, am now mostly using Ice instead:
+
+<https://github.com/jordanbaird/Ice>
+
 ### QLMarkdown
 
 For previewing markdown in Finder
@@ -193,7 +197,7 @@ else
 end if
 ```
 
-* replace <UUID FOR MONITOR> with the UUID for that monitor (find with `m1ddc display list`)
+* replace `<UUID FOR MONITOR>` with the UUID for that monitor (find with `m1ddc display list`)
 * 18 & 17 are my HDMI 1 & HDMI 2 inputs, YMMV on those specific values.
 * File → Export… → File Format: Application. Save as Dell HDMI.app somewhere
   stable (e.g. `~/Applications/`).
