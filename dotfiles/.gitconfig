@@ -30,6 +30,7 @@
     s = status
     d = diff
     sd = !git status && git --no-pager diff
+    wt = worktree
 
     # cause git to forget or remember a tracked file, allowing changes to skip version control
     # see: http://stackoverflow.com/questions/13630849/git-difference-between-assume-unchanged-and-skip-worktree/13631525#13631525
