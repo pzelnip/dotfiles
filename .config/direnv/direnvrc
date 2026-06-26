@@ -1,0 +1,11 @@
+# .envrc or ~/.config/direnv/direnvrc
+#!/usr/bin/env bash
+
+
+gitignore_local() {
+    if [ -f .gitignore.local ]; then
+        cp .gitignore.local .git/info/exclude
+    fi
+}
+
+gitignore_local
