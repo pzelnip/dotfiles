@@ -8,6 +8,23 @@
 ### Fixed
 ### Security
 
+## [1.1.0] - 2026-06-26
+
+### Added
+
+- Linear support via new `--tracker {jira,linear}` flag (defaults to `jira`).
+  Queries the [`linear` CLI](https://github.com/schpet/linear-cli)'s raw
+  GraphQL endpoint for ticket title, priority, and labels.
+    - Linear priority integers (0=None, 1=Urgent … 4=Low) mapped to the
+      existing `P0`-`P3`/`X` indicators.
+    - Linear has no issue-type concept, so the icon is derived from issue
+      labels (matched against the existing icon map, defaulting to 📝).
+
+### Changed
+
+- `--account`/`--key` are now only required when `--tracker jira`; Linear auth
+  is handled by the `linear` CLI itself.
+
 ## [1.0.2] - 2026-02-26
 
 ### Fixed

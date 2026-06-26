@@ -1,13 +1,20 @@
 #!/usr/bin/env python3
 
 """
-Handy dandy script for starting a new JIRA ticket, does some novel things
+Handy dandy script for starting a new JIRA or Linear ticket, does some novel things
 
-* given a ticket ref (e.g. MYPROJ-1234), queries JIRA for ticket description
-* slugifies that description
+* given a ticket ref (e.g. MYPROJ-1234), queries the tracker for ticket details
+* slugifies the summary/title
 * cuts a branch with the slugified description (after pulling latest from origin
   for specified target branch)
 * creates a task in VS Code
+
+Supports two trackers via --tracker:
+
+* jira   - queries the JIRA REST API (auth via keyring, see get_auth)
+* linear - shells out to the `linear` CLI's raw GraphQL endpoint
+           (https://github.com/schpet/linear-cli). Auth is handled by the CLI
+           itself (`linear auth`), so --account/--key are not needed.
 """
 
 
@@ -24,6 +31,22 @@ from cryptocode import decrypt, encrypt
 from requests import request
 from requests.auth import HTTPBasicAuth
 from slugify import slugify  # from python-slugify
+
+
+# Issue-type -> icon. Keys are matched case-insensitively against the JIRA
+# issuetype name and against Linear label names (Linear has no issue-type
+# concept, so we derive an icon from labels instead).
+ISSUE_TYPE_ICON_MAP = {
+    "Initiative": "☑️",
+    "Epic": "⚡",
+    "Spike": "💡",
+    "Story": "✅",
+    "Bug": "🐛",
+    "Design Task": "🎨",
+    "Security Bug": "🔒",
+    "Task": "📝",
+}
+DEFAULT_ICON = "📝"
 
 
 def get_auth(account, key_string):
@@ -54,16 +77,6 @@ def get_auth(account, key_string):
 def do_jira_stuff(task_name, account, key_string):
     """Build a slugified task name from JIRA ticket info."""
 
-    issue_type_icon_map = {
-        "Initiative": "☑️",
-        "Epic": "⚡",
-        "Spike": "💡",
-        "Story": "✅",
-        "Bug": "🐛",
-        "Design Task": "🎨",
-        "Security Bug": "🔒",
-        "Task": "📝",
-    }
     priority_level_map = {
         "Highest": "0",
         "High": "1",
@@ -87,7 +100,7 @@ def do_jira_stuff(task_name, account, key_string):
     fields = response["fields"]
     summary = fields.get("summary")
     issue_type = fields.get("issuetype", {}).get("name", "Task")
-    icon = issue_type_icon_map.get(issue_type, "📝")
+    icon = ISSUE_TYPE_ICON_MAP.get(issue_type, DEFAULT_ICON)
     key = response["key"]
     priority = fields.get("priority", {}).get("name")
     priority = (
@@ -97,6 +110,51 @@ def do_jira_stuff(task_name, account, key_string):
     )
 
     return f"{key}-{priority}-{icon}-{slugify(summary)}"
+
+
+def do_linear_stuff(task_name):
+    """Build a slugified task name from Linear ticket info."""
+
+    # Linear's priority is an int with a (near-inverted vs JIRA) meaning:
+    #   0 = No priority, 1 = Urgent, 2 = High, 3 = Medium, 4 = Low
+    linear_priority_map = {1: "P0", 2: "P1", 3: "P2", 4: "P3"}
+
+    # We query the linear CLI's raw GraphQL endpoint rather than its `view`
+    # subcommand because:
+    # * `linear issue view --json` does NOT return labels (reports null even
+    #   when labels exist) — and labels are how we derive the icon.
+    # * one query gets title, priority and labels together.
+    query = (
+        "query { issue(id: \"%s\") { identifier title priority "
+        "labels { nodes { name } } } }" % task_name
+    )
+    result = subprocess.run(
+        ["linear", "api", query],
+        capture_output=True,
+        text=True,
+        check=True,
+    )
+    issue = json.loads(result.stdout)["data"]["issue"]
+    if issue is None:
+        raise RuntimeError(f"Linear issue not found: {task_name}")
+
+    key = issue["identifier"]
+    title = issue["title"]
+
+    # Linear has no issue-type concept; derive the icon from the first label
+    # whose name matches our icon map (case-insensitive), else default.
+    label_names = [node["name"] for node in issue.get("labels", {}).get("nodes", [])]
+    lowered_icon_map = {name.lower(): icon for name, icon in ISSUE_TYPE_ICON_MAP.items()}
+    icon = next(
+        (lowered_icon_map[name.lower()] for name in label_names if name.lower() in lowered_icon_map),
+        DEFAULT_ICON,
+    )
+
+    priority = linear_priority_map.get(issue.get("priority"), "X")
+
+    # Linear hands us a pre-slugified branch name, but slugify(title) here to
+    # keep the branch-name format identical to the JIRA path.
+    return f"{key}-{priority}-{icon}-{slugify(title)}"
 
 
 def get_default_branch():
@@ -166,22 +224,33 @@ def add_to_tasks_context(task_name):
 
 def parse_args():
     parser = argparse.ArgumentParser(
-        description="Create a new JIRA ticket branch and VS Code task"
+        description="Create a new JIRA/Linear ticket branch and VS Code task"
     )
     parser.add_argument(
         "-t",
         "--task",
         required=True,
-        help="JIRA ticket reference (e.g. MYPROJ-1234)",
+        help="Ticket reference (e.g. MYPROJ-1234 for JIRA, EDC-10195 for Linear)",
     )
-    parser.add_argument("-a", "--account", required=True, help="JIRA account/username")
+    parser.add_argument(
+        "--tracker",
+        choices=["jira", "linear"],
+        default="jira",
+        help="Issue tracker to query (default: jira)",
+    )
+    # JIRA-only; auth for Linear is handled by the `linear` CLI itself.
+    parser.add_argument("-a", "--account", help="JIRA account/username")
     parser.add_argument(
         "-k",
         "--key",
-        required=True,
-        help="Decryption key for decoding stored API token",
+        help="Decryption key for decoding stored API token (JIRA only)",
     )
-    return parser.parse_args()
+    args = parser.parse_args()
+
+    if args.tracker == "jira" and not (args.account and args.key):
+        parser.error("--account and --key are required when --tracker jira")
+
+    return args
 
 
 def main():
@@ -190,7 +259,10 @@ def main():
     """
     args = parse_args()
 
-    task_name = do_jira_stuff(args.task, args.account, args.key)
+    if args.tracker == "linear":
+        task_name = do_linear_stuff(args.task)
+    else:
+        task_name = do_jira_stuff(args.task, args.account, args.key)
     branch = get_default_branch()
     print(f"Creating task branch: {task_name} based on {branch}")
     do_git_stuff(task_name, branch)
