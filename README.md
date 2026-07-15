@@ -108,6 +108,12 @@ DaisyDisk: <https://daisydiskapp.com/download/>
 sudo gem install lolcat
 ```
 
+### WhatCable
+
+Handy tool for diagnosing peripheral/cable issues
+
+<https://github.com/darrylmorley/whatcable>
+
 ### Rectangle
 
 <https://rectangleapp.com/>

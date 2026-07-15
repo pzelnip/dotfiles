@@ -21,7 +21,12 @@ brew install bat
 brew install rg
 brew install ghorg
 brew install imagemagick
+
+# https://github.com/waydabber/m1ddc (I use this for switching monitor inputs programmatically)
 brew install m1ddc
+
+# https://github.com/darrylmorley/whatcable
+brew install --cask darrylmorley/whatcable/whatcable
 
 # https://docs.gitlab.com/editor_extensions/gitlab_cli/
 brew install glab
