@@ -25,6 +25,9 @@ There are a handful of directories:
   directory (think things like `.bashrc`, `.gitconfig`, etc)
 * `/bin` - a handful of various utilities & scripts to make life easier. I
   usually put this into my PATH.
+* `/claude` - a personal library of [Claude Code](https://claude.com/claude-code)
+  skills & commands I use across machines (copy pieces into `~/.claude` as
+  needed, see `claude/README.md`).
 * `/.git-templates` - some handy Git related hooks & such.
 * `/.vscode` - some templates for tasks.json & settings files for
   [the best editor out there](https://code.visualstudio.com/)
