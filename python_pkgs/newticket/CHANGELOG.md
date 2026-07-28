@@ -8,6 +8,14 @@
 ### Fixed
 ### Security
 
+## [1.2.0] - 2026-07-27
+
+### Added
+
+- `--no-emoji` flag which omits the issue-type emoji from the generated branch
+  name and VS Code task entry (works with both trackers). Branch names become
+  `KEY-PRIORITY-slugified-title`.
+
 ## [1.1.0] - 2026-06-26
 
 ### Added

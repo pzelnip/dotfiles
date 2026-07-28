@@ -10,6 +10,9 @@ Handy script for starting work on a new ticket. Given a ticket reference it:
 The branch name follows the format `KEY-PRIORITY-ICON-slugified-title`, e.g.
 `EDC-10195-P2-📝-backfill-cleanup-of-orphaned-zapstorage-records`.
 
+Pass `--no-emoji` to drop the icon segment entirely, giving
+`EDC-10195-P2-backfill-cleanup-of-orphaned-zapstorage-records`.
+
 ## Install / reinstall
 
 Installed via [pipx](https://pipx.pypa.io/) (see the repo's
@@ -39,8 +42,11 @@ pipx list | grep newticket
 ## Usage
 
 ```sh
-newticket -t <ticket-id> [--tracker {jira,linear}] [-a <account> -k <key>]
+newticket -t <ticket-id> [--tracker {jira,linear}] [--no-emoji] [-a <account> -k <key>]
 ```
+
+`--no-emoji` works with either tracker and omits the emoji from both the branch
+name and the `.vscode/tasks-context.json` entry.
 
 ### JIRA (default)
 

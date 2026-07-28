@@ -74,7 +74,14 @@ def get_auth(account, key_string):
     return HTTPBasicAuth(username=account, password=decrypted_passcode)
 
 
-def do_jira_stuff(task_name, account, key_string):
+def build_branch_name(key, priority, icon, title):
+    """Assemble the branch name, omitting the icon segment when it's empty."""
+
+    parts = [key, priority, icon, slugify(title)]
+    return "-".join(part for part in parts if part)
+
+
+def do_jira_stuff(task_name, account, key_string, no_emoji=False):
     """Build a slugified task name from JIRA ticket info."""
 
     priority_level_map = {
@@ -100,7 +107,7 @@ def do_jira_stuff(task_name, account, key_string):
     fields = response["fields"]
     summary = fields.get("summary")
     issue_type = fields.get("issuetype", {}).get("name", "Task")
-    icon = ISSUE_TYPE_ICON_MAP.get(issue_type, DEFAULT_ICON)
+    icon = "" if no_emoji else ISSUE_TYPE_ICON_MAP.get(issue_type, DEFAULT_ICON)
     key = response["key"]
     priority = fields.get("priority", {}).get("name")
     priority = (
@@ -109,10 +116,10 @@ def do_jira_stuff(task_name, account, key_string):
         else f"P{priority_level_map.get(priority, "?")}"
     )
 
-    return f"{key}-{priority}-{icon}-{slugify(summary)}"
+    return build_branch_name(key, priority, icon, summary)
 
 
-def do_linear_stuff(task_name):
+def do_linear_stuff(task_name, no_emoji=False):
     """Build a slugified task name from Linear ticket info."""
 
     # Linear's priority is an int with a (near-inverted vs JIRA) meaning:
@@ -145,16 +152,24 @@ def do_linear_stuff(task_name):
     # whose name matches our icon map (case-insensitive), else default.
     label_names = [node["name"] for node in issue.get("labels", {}).get("nodes", [])]
     lowered_icon_map = {name.lower(): icon for name, icon in ISSUE_TYPE_ICON_MAP.items()}
-    icon = next(
-        (lowered_icon_map[name.lower()] for name in label_names if name.lower() in lowered_icon_map),
-        DEFAULT_ICON,
+    icon = (
+        ""
+        if no_emoji
+        else next(
+            (
+                lowered_icon_map[name.lower()]
+                for name in label_names
+                if name.lower() in lowered_icon_map
+            ),
+            DEFAULT_ICON,
+        )
     )
 
     priority = linear_priority_map.get(issue.get("priority"), "X")
 
     # Linear hands us a pre-slugified branch name, but slugify(title) here to
     # keep the branch-name format identical to the JIRA path.
-    return f"{key}-{priority}-{icon}-{slugify(title)}"
+    return build_branch_name(key, priority, icon, title)
 
 
 def get_default_branch():
@@ -238,6 +253,11 @@ def parse_args():
         default="jira",
         help="Issue tracker to query (default: jira)",
     )
+    parser.add_argument(
+        "--no-emoji",
+        action="store_true",
+        help="Omit the issue-type emoji from the branch/task name",
+    )
     # JIRA-only; auth for Linear is handled by the `linear` CLI itself.
     parser.add_argument("-a", "--account", help="JIRA account/username")
     parser.add_argument(
@@ -260,9 +280,9 @@ def main():
     args = parse_args()
 
     if args.tracker == "linear":
-        task_name = do_linear_stuff(args.task)
+        task_name = do_linear_stuff(args.task, args.no_emoji)
     else:
-        task_name = do_jira_stuff(args.task, args.account, args.key)
+        task_name = do_jira_stuff(args.task, args.account, args.key, args.no_emoji)
     branch = get_default_branch()
     print(f"Creating task branch: {task_name} based on {branch}")
     do_git_stuff(task_name, branch)
