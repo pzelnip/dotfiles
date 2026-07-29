@@ -1,0 +1,21 @@
+# Work-specific items that compare.sh drops from the sync comparison entirely.
+#
+# claude/ is meant to hold general, portable content, so anything wired to
+# internal Zapier tooling (GitLab mirror, ReviewLabs, Datadog/Grafana/Graylog/
+# Sentry, the engineering index, HR workflows) is never a sync candidate in
+# either direction.
+#
+# One item per line, matched exactly against the item path compare.sh prints
+# (e.g. skills/argocd, agents/foo.md). Blank lines and # comments are ignored.
+
+agents/engineering-index-search.md
+skills/adr-or-not
+skills/argocd
+skills/connect-to-reviewlab
+skills/datadog
+skills/grafana
+skills/graylog
+skills/promo-packet-review
+skills/sentry
+skills/update-reviewlab-helm-charts
+skills/zcodesearch

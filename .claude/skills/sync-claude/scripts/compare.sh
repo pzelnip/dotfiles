@@ -13,11 +13,15 @@
 # An "item" is the sync unit: one entry per skill/command/agent
 # (e.g. skills/test-improver), or one top-level entry otherwise
 # (e.g. core, hooks, statusline.sh).
+#
+# Work-specific items listed in ignore.txt are dropped from the comparison; a
+# count goes to stderr so the omission is never silent.
 
 set -uo pipefail
 
 REPO_CLAUDE="${1:-claude}"
 HOME_CLAUDE="${2:-$HOME/.claude}"
+IGNORE_FILE="$(dirname "${BASH_SOURCE[0]}")/ignore.txt"
 
 # Runtime state and machine-local noise: never a sync candidate, either way.
 EXCLUDED=(
@@ -29,6 +33,17 @@ EXCLUDED=(
 )
 # Repo-only files documenting the library; they have no place in ~/.claude.
 EXCLUDED_REPO=(README.md)
+
+# Work-specific items, read from ignore.txt (blank lines and # comments skipped).
+IGNORED=()
+if [[ -f "$IGNORE_FILE" ]]; then
+  while IFS= read -r entry || [[ -n "$entry" ]]; do
+    entry="${entry%%#*}"
+    entry="${entry#"${entry%%[![:space:]]*}"}"
+    entry="${entry%"${entry##*[![:space:]]}"}"
+    [[ -n "$entry" ]] && IGNORED+=("$entry")
+  done <"$IGNORE_FILE"
+fi
 
 DIFF_EXCLUDES=(--exclude=__pycache__ --exclude='*.pyc' --exclude=.DS_Store)
 
@@ -76,6 +91,10 @@ filter_items() {
     if [[ "$scope" == repo ]] && in_list "$line" "${EXCLUDED_REPO[@]}"; then
       continue
     fi
+    if in_list "$line" ${IGNORED[@]+"${IGNORED[@]}"}; then
+      printf '%s\n' "$line" >>"$tmp/ignored"
+      continue
+    fi
     printf '%s\n' "$line"
   done
 }
@@ -101,3 +120,8 @@ comm -12 "$tmp/repo" "$tmp/home" | while IFS= read -r item; do
     printf 'DIFFERENT\t%s\n' "$item"
   fi
 done
+
+if [[ -s "$tmp/ignored" ]]; then
+  printf '# ignored %s work-specific item(s) per %s\n' \
+    "$(sort -u "$tmp/ignored" | wc -l | tr -d ' ')" "$IGNORE_FILE" >&2
+fi

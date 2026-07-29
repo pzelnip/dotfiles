@@ -11,7 +11,6 @@ Everything here is intended to be **general** (not tied to work-specific tooling
 
 * `/skills` — custom skills, one directory per skill (each containing a
   `SKILL.md`).
-* `/commands` — custom slash commands, one `.md` file per command.
 * `/hooks` — event hooks (`notification.py`, `stop.py`) that provide spoken
   notifications when Claude needs attention or finishes.
 * `/core` — Python support package the hooks import (TTS, transcript parsing,
@@ -25,12 +24,6 @@ Everything here is intended to be **general** (not tied to work-specific tooling
 
 ```shell
 cp -r claude/skills/<skill-name> ~/.claude/skills/
-```
-
-### Commands
-
-```shell
-cp claude/commands/<command>.md ~/.claude/commands/
 ```
 
 ### Hooks + core + statusline

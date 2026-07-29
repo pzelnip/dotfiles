@@ -24,6 +24,13 @@ Runtime state is never a candidate — `scripts/compare.sh` already excludes
 `projects/`, `sessions/`, `history.jsonl`, `cache/`, `plugins/`, `file-history/`,
 `__pycache__`, `.DS_Store`, and friends. Do not hand-copy anything it filtered out.
 
+Work-specific items are never a candidate either. `claude/` holds **general**,
+portable content, so items wired to internal Zapier tooling are listed in
+[scripts/ignore.txt](scripts/ignore.txt) and dropped from the comparison in both
+directions; `compare.sh` reports the count on stderr. If the user asks to sync
+something the ignore list is holding back, or wants a new item permanently
+excluded, edit that file rather than working around it.
+
 ## Workflow
 
 ### 1. Preflight
@@ -68,16 +75,15 @@ Two numbered lists, one per direction. For each item give a one-line description
 (read the skill's `description` frontmatter or the file's first lines — do not guess
 from the name), and for `DIFFERENT` items a one-line summary of the delta.
 
-Flag two things inline, because `claude/` is meant to hold **general**, portable
-content:
+Mark `[review first]` inline on **plugin- or marketplace-installed** items, and on
+items containing secrets, absolute home paths, or machine-local settings
+(`settings.json`, `CLAUDE.md`). Flagging is advice, not a veto; the user decides.
 
-- **Work-specific** items (Zapier tooling, internal GitLab/Jira/Datadog/k8s
-  specifics) — mark `[work-specific]`.
-- **Plugin- or marketplace-installed** items, and items containing secrets, absolute
-  home paths, or machine-local settings (`settings.json`, `CLAUDE.md`) — mark
-  `[review first]`.
+If a candidate looks work-specific but `compare.sh` still surfaced it, say so and
+offer to add it to [scripts/ignore.txt](scripts/ignore.txt).
 
-Flagging is advice, not a veto; the user decides.
+Also report the ignored count `compare.sh` printed on stderr, so the user can see
+the comparison was not exhaustive.
 
 Ask for the selection as numbers, since there are usually more than four candidates:
 
