@@ -2,3 +2,6 @@
 .DS_Store
 *.pyc
 .vscode/keep-context.json
+
+python_pkgs/newticket/build/
+python_pkgs/newticket/newticket.egg-info/
