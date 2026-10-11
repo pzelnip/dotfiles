@@ -165,6 +165,10 @@ As of June 2026, am now mostly using Ice instead:
 
 <https://github.com/jordanbaird/Ice>
 
+As of September with Golden Gate, I've switched to Pelmet:
+
+<https://github.com/fif7y/pelmet/>
+
 ### QLMarkdown
 
 For previewing markdown in Finder
