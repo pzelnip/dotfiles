@@ -181,6 +181,12 @@ Exactly what it says, nothing more (what a refreshing concept!)
 
 <https://apps.apple.com/us/app/menu-bar-calendar/id1558360383?mt=12>
 
+### AppCleaner
+
+For doing a better job of uninstalling apps:
+
+<https://freemacsoft.net/appcleaner/>
+
 ### KeePassXC
 
 <https://keepassxc.org/>
